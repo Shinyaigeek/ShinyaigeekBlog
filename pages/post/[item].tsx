@@ -30,8 +30,6 @@ interface Props {
 
 // @ts-ignore
 const PostPage: NextPage<WithRouterProps & Props> = props => {
-  console.log(props);
-  const router = useRouter();
   const [shareFlag, handleShareFlag] = useState(false);
   return (
     <div>
@@ -66,7 +64,7 @@ const PostPage: NextPage<WithRouterProps & Props> = props => {
 
 // @ts-ignore
 PostPage.getInitialProps = async req => {
-  const res = await fetch("http://localhost:3000/api/get-content", {
+  const res = await fetch("http://localhost:3000/api/get-content/" + req.query.item , {
     method: "GET",
     mode: "cors",
     credentials: "same-origin",

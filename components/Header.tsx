@@ -13,7 +13,7 @@ interface Props {
   handleMenuFlag: Function;
 }
 
-export default function Header(props: Props) {
+export default function Header(props: {}) {
   return (
     <div className="header">
       <div className="title">
@@ -43,12 +43,12 @@ export default function Header(props: Props) {
         <div
           className="to"
           onClick={() => {
-            props.handleContactFlag(true);
+            // props.handleContactFlag(true);
           }}>
           コンタクト
         </div>
       </div>
-      <div className="contents_hamberger">
+      {/* <div className="contents_hamberger">
         <div
           className={!props.menuFlag ? "menu-trigger" : "menu-trigger active"}
           id="menu-trigger02"
@@ -90,7 +90,7 @@ export default function Header(props: Props) {
             </div>
           </div>
         </Drawer>
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -26,6 +26,7 @@
     "front-matter": "^3.0.2",
     "fs": "^0.0.1-security",
     "fs2": "^0.3.7",
+    "http": "^0.0.0",
     "isomorphic-unfetch": "^3.0.0",
     "marked": "^0.7.0",
     "next": "^9.1.4",
