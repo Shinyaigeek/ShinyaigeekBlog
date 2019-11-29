@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { withRouter, NextRouter } from "next/router";
-import { NextPage } from "next"
+import { withRouter } from "next/router";
+import { NextPage } from "next";
 import Head from "next/head";
 import { WithRouterProps } from "next/dist/client/with-router";
 
@@ -21,32 +21,33 @@ interface Props {
     query: {
       postInfo: {
         name: string;
-        description: string;
+        // description: string;
       };
     };
   };
 }
 
-const PostPage: NextPage<WithRouterProps & Props> = (props) => {
+// @ts-ignore
+const PostPage: NextPage<WithRouterProps & Props> = props => {
   const [shareFlag, handleShareFlag] = useState(false);
   return (
     <div>
       <Head>
-        <title>しにゃいの学習帳｜{props.router.query.postInfo.name}</title>
+        {/* <title>しにゃいの学習帳｜{props.router.query.postInfo.name}</title> */}
         <meta
           name="description"
-          content={props.router.query.postInfo.description}
+          //   content={props.router.query.postInfo.description}
         />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="author" content="しにゃい" />
         <meta property="og:url" content="https://www.shinyaigeek.com" />
         <meta
           property="og:title"
-          content={"しにゃいの学習帳｜" + props.router.query.postInfo.name}
+          //   content={"しにゃいの学習帳｜" + props.router.query.postInfo.name}
         />
         <meta
           property="og:description"
-          content={props.router.query.postInfo.description}
+          //   content={props.router.query.postInfo.description}
         />
         <meta
           property="og:image"
@@ -54,10 +55,17 @@ const PostPage: NextPage<WithRouterProps & Props> = (props) => {
         />
         <meta name="twitter:site" content="@Shinyaigeek" />
         <meta name="twitter:card" content="summary" />
-        <link rel="icon" href="/static/icon.png" />
+        {/* <link rel="icon" href="/static/icon.png" /> */}
       </Head>
     </div>
   );
+};
+
+// @ts-ignore
+PostPage.getInitialProps = async (req) => {
+  const res = await fetch("/api/get-content");
+  const json = await res.json();
+  return { props: json };
 };
 
 export default withRouter(PostPage);
