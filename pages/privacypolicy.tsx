@@ -1,6 +1,8 @@
 import React from "react";
+import { NextPage } from "next";
+import withRouter, { WithRouterProps } from "next/dist/client/with-router";
 
-export default function privacypolicy() {
+const PripacyPolicy: NextPage<WithRouterProps> = () => {
   return (
     <div>
       <h4>広告の配信について</h4>
@@ -61,4 +63,6 @@ export default function privacypolicy() {
       <br />
     </div>
   );
-}
+};
+
+export default withRouter(PripacyPolicy);

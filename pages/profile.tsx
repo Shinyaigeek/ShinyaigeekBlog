@@ -2,10 +2,10 @@ import React from "react";
 
 import { withRouter } from "next/router";
 import Head from "next/head";
+import { NextPage } from "next";
+import { WithRouterProps } from "next/dist/client/with-router";
 
-import "../assets/css/profile.scss";
-
-function Profile() {
+const Profile: NextPage<WithRouterProps> = () => {
   return (
     <div className="profile">
       <Head>
@@ -34,6 +34,6 @@ function Profile() {
       </Head>
     </div>
   );
-}
+};
 
 export default withRouter(Profile);
