@@ -3,6 +3,7 @@ import { withRouter } from "next/router";
 import { NextPage } from "next";
 import Head from "next/head";
 import { WithRouterProps } from "next/dist/client/with-router";
+// import fetch from "isomorphic-unfetch";
 
 const fixHtml: Function = (handleShareFlag: Function) => (flag: boolean) => {
   const doc: HTMLElement = document.querySelector("html")!;
@@ -29,6 +30,7 @@ interface Props {
 
 // @ts-ignore
 const PostPage: NextPage<WithRouterProps & Props> = props => {
+    console.log(props)
   const [shareFlag, handleShareFlag] = useState(false);
   return (
     <div>
@@ -62,9 +64,15 @@ const PostPage: NextPage<WithRouterProps & Props> = props => {
 };
 
 // @ts-ignore
-PostPage.getInitialProps = async (req) => {
-  const res = await fetch("/api/get-content");
+PostPage.getInitialProps = async req => {
+  const res = await fetch("http://localhost:3000/api/get-content", {
+    method: "GET",
+    mode: "cors",
+    credentials: "same-origin",
+    referrer: "no-referrer"
+  });
   const json = await res.json();
+  console.log(json)
   return { props: json };
 };
 
