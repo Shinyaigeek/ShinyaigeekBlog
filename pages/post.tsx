@@ -3,7 +3,7 @@ import { withRouter } from "next/router";
 import { NextPage } from "next";
 import Head from "next/head";
 import { WithRouterProps } from "next/dist/client/with-router";
-// import fetch from "isomorphic-unfetch";
+import fetch from "isomorphic-unfetch";
 
 const fixHtml: Function = (handleShareFlag: Function) => (flag: boolean) => {
   const doc: HTMLElement = document.querySelector("html")!;
