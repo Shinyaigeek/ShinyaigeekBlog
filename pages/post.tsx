@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { withRouter } from "next/router";
+import { withRouter, useRouter } from "next/router";
 import { NextPage } from "next";
 import Head from "next/head";
 import { WithRouterProps } from "next/dist/client/with-router";
@@ -30,7 +30,8 @@ interface Props {
 
 // @ts-ignore
 const PostPage: NextPage<WithRouterProps & Props> = props => {
-    console.log(props)
+  console.log(props);
+  const router = useRouter();
   const [shareFlag, handleShareFlag] = useState(false);
   return (
     <div>
@@ -72,7 +73,7 @@ PostPage.getInitialProps = async req => {
     referrer: "no-referrer"
   });
   const json = await res.json();
-  console.log(json)
+  console.log(json);
   return { props: json };
 };
 
