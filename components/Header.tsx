@@ -22,67 +22,66 @@ export default function Header(props: Props) {
           しにゃいの学習帳
         </a>
       </div>
-      <div className="contents">
-        <div className="to">
-          <a className="toHome" href="/">
+      <div className="header--contents">
+        <div className="header--contents__anchorBlock">
+          <a className="header--contents__anchor" href="/">
             ブログ
           </a>
         </div>
-        <div className="to">
-          {/* <Link prefetch href="/profile">
-            <a className="toHome" href="/profile/">
+        <div className="header--contents__anchorBlock">
+          <Link href="/profile">
+            <a className="header--contents__anchor" href="/profile/">
               プロフィール
             </a>
-          </Link> */}
+          </Link>
         </div>
-        <div className="to">
-          <a href="/" className="toHome">
+        <div className="header--contents__anchorBlock">
+          <a href="/" className="header--contents__anchor">
             作品集
           </a>
         </div>
         <div
-          className="to"
+          className="header--contents__anchorBlock"
           onClick={() => {
-            // props.handleContactFlag(true);
+            props.setShowContactModal();
           }}>
           コンタクト
         </div>
       </div>
-      <div className="contents_hamberger">
+      <div className="header--contentsHamburger">
         <div
-          className={!props.showHamburgerMenu ? "menu-trigger" : "menu-trigger active"}
-          id="menu-trigger02"
+          className={!props.showHamburgerMenu ? "hamburger--menu__trigger" : "hamburger--menu__trigger__active"}
           onClick={() => {
             props.setShowHamburgerMenu();
           }}>
-          <span />
-          <span />
-          <span />
+          <span className="hamburger--menu__trigger__part"/>
+          <span className="hamburger--menu__trigger__part"/>
+          <span className="hamburger--menu__trigger__part" />
         </div>
         <Drawer
           visible={props.showHamburgerMenu}
           onClose={() => props.setShowHamburgerMenu()}
           width="100%"
           closable={false}
-          className="drawer">
-          <div className="menu--list">
-            <div className="to">
-              <a href="/" className="toHome">
+          className="hamburgerMenu--content">
+          <div className="hamburgerMenu--content">
+            <div className="header--contents__anchorBlock">
+              <a href="/" className="header--contents__anchor">
                 ブログ
               </a>
             </div>
-            <div className="to">
-              <a href="/profile" className="toHome">
+            <div className="header--contents__anchorBlock">
+              <a href="/profile" className="header--contents__anchor">
                 プロフィール
               </a>
             </div>
-            <div className="to">
-              <a href="/" className="toHome">
+            <div className="header--contents__anchorBlock">
+              <a href="/" className="header--contents__anchor">
                 作品集
               </a>
             </div>
             <div
-              className="to"
+              className="header--contents__anchorBlock"
               onClick={() => {
                 props.setShowContactModal();
               }}>
