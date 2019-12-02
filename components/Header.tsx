@@ -7,18 +7,18 @@ import { Drawer } from "antd";
 import "../style/header.scss";
 
 interface Props {
-  contactFlag: boolean;
-  handleContactFlag: Function;
-  menuFlag: boolean;
-  handleMenuFlag: Function;
+  showContactModal: boolean;
+  setShowContactModal: Function;
+  showHamburgerMenu: boolean;
+  setShowHamburgerMenu: Function;
 }
 
-export default function Header(props: {}) {
+export default function Header(props: Props) {
   return (
     <div className="header">
-      <div className="title">
-        <a href="/" className="toHome">
-          <img src="/static/icon_transparent.png" />
+      <div className="header--title">
+        <a href="/" className="header--title__toHome">
+          <img src="/static/icon_transparent.png" alt="icon" className="header--title__icon" />
           しにゃいの学習帳
         </a>
       </div>
@@ -48,20 +48,20 @@ export default function Header(props: {}) {
           コンタクト
         </div>
       </div>
-      {/* <div className="contents_hamberger">
+      <div className="contents_hamberger">
         <div
-          className={!props.menuFlag ? "menu-trigger" : "menu-trigger active"}
+          className={!props.showHamburgerMenu ? "menu-trigger" : "menu-trigger active"}
           id="menu-trigger02"
           onClick={() => {
-            props.handleMenuFlag(!props.menuFlag);
+            props.setShowHamburgerMenu();
           }}>
           <span />
           <span />
           <span />
         </div>
         <Drawer
-          visible={props.menuFlag}
-          onClose={() => props.handleMenuFlag(false)}
+          visible={props.showHamburgerMenu}
+          onClose={() => props.setShowHamburgerMenu()}
           width="100%"
           closable={false}
           className="drawer">
@@ -84,13 +84,13 @@ export default function Header(props: {}) {
             <div
               className="to"
               onClick={() => {
-                props.handleContactFlag(true);
+                props.setShowContactModal();
               }}>
               コンタクト
             </div>
           </div>
         </Drawer>
-      </div> */}
+      </div>
     </div>
   );
 }

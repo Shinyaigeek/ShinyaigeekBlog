@@ -10,13 +10,28 @@ interface Props {
   store: {};
 }
 
-// @ts-ignore
 class App extends NextApp<Props> {
+  state = {
+    showHamburgerMenu: false,
+    showContactModal: false
+  };
+  setShowHamburgerMenu() {
+    this.setState({
+      showHamburgerMenu: !this.state.showHamburgerMenu,
+      ...this.state
+    });
+  }
+  setShowContactModal() {
+    this.setState({
+      showContactModal: !this.state.showContactModal,
+      ...this.state
+    });
+  }
   render() {
     const { Component } = this.props;
     return (
       <Fragment>
-        <Header />
+        <Header setShowContactModal={this.setShowContactModal} showContactModal={this.state.showContactModal} setShowHamburgerMenu={this.setShowHamburgerMenu} showHamburgerMenu={this.state.showHamburgerMenu}/>
         <Component {...this.props.pageProps} />
         <Footer />
       </Fragment>
