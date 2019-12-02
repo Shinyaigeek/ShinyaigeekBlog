@@ -3,7 +3,7 @@ import { withRouter, makePublicRouterInstance } from "next/router";
 import { NextPage, NextPageContext, NextApiResponse } from "next";
 import Head from "next/head";
 import fetch from "isomorphic-unfetch";
-import PostContent from "../../views/post";
+import PostContent from "../../views/Post";
 
 const fixHtml: Function = (handleShareFlag: Function) => (flag: boolean) => {
   const doc: HTMLElement = document.querySelector("html")!;
