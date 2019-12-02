@@ -30,26 +30,26 @@ interface PageInfo {
 }
 
 const Item: NextPage< PageInfo > = props => {
-  // const [shareFlag, handleShareFlag] = useState(false);
+  const [shareFlag, handleShareFlag] = useState(false);
   console.log(props, "this");
   return (
     <div>
       <Head>
-        {/* <title>しにゃいの学習帳｜{props.router.query.postInfo.name}</title> */}
+        <title>しにゃいの学習帳｜{props.header.name}</title>
         <meta
           name="description"
-          //   content={props.router.query.postInfo.description}
+            content={props.header.description}
         />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="author" content="しにゃい" />
         <meta property="og:url" content="https://www.shinyaigeek.com" />
         <meta
           property="og:title"
-          //   content={"しにゃいの学習帳｜" + props.router.query.postInfo.name}
+            content={"しにゃいの学習帳｜" + props.header.name}
         />
         <meta
           property="og:description"
-          //   content={props.router.query.postInfo.description}
+            content={props.header.description}
         />
         <meta
           property="og:image"
@@ -57,7 +57,7 @@ const Item: NextPage< PageInfo > = props => {
         />
         <meta name="twitter:site" content="@Shinyaigeek" />
         <meta name="twitter:card" content="summary" />
-        {/* <link rel="icon" href="/static/icon.png" /> */}
+        <link rel="icon" href="/static/icon.png" />
       </Head>
       {props.body && <PostContent body={props.body} />}
     </div>
