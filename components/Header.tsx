@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { Drawer } from "antd";
 
-// import "../assets/css/header.scss";
+import "../style/header.scss";
 
 interface Props {
   contactFlag: boolean;
