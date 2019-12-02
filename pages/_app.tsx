@@ -10,13 +10,14 @@ interface Props {
   store: {};
 }
 
+// @ts-ignore
 class App extends NextApp<Props> {
   render() {
     const { Component } = this.props;
     return (
       <Fragment>
         <Header />
-        <Component />
+        <Component {...this.props.pageProps} />
         <Footer />
       </Fragment>
     );

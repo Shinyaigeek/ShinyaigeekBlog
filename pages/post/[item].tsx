@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { withRouter, useRouter } from "next/router";
-import { NextPage } from "next";
+import React, { useState, useEffect } from "react";
+import { withRouter, makePublicRouterInstance } from "next/router";
+import { NextPage, NextPageContext, NextApiResponse } from "next";
 import Head from "next/head";
-import { WithRouterProps } from "next/dist/client/with-router";
 import fetch from "isomorphic-unfetch";
+import PostContent from "../../views/post";
 
 const fixHtml: Function = (handleShareFlag: Function) => (flag: boolean) => {
   const doc: HTMLElement = document.querySelector("html")!;
@@ -17,20 +17,21 @@ const fixHtml: Function = (handleShareFlag: Function) => (flag: boolean) => {
   }
 };
 
-interface Props {
-  router: {
-    query: {
-      postInfo: {
-        name: string;
-        // description: string;
-      };
-    };
+interface PageInfo {
+  header: {
+    name: string;
+    path: string;
+    tag: string[];
+    description: string;
+    img: string;
+    date: string;
   };
+  body: string;
 }
 
-// @ts-ignore
-const PostPage: NextPage<WithRouterProps & Props> = props => {
-  const [shareFlag, handleShareFlag] = useState(false);
+const Item: NextPage< PageInfo > = props => {
+  // const [shareFlag, handleShareFlag] = useState(false);
+  console.log(props, "this");
   return (
     <div>
       <Head>
@@ -52,27 +53,29 @@ const PostPage: NextPage<WithRouterProps & Props> = props => {
         />
         <meta
           property="og:image"
-          content="https://www.shinyaigeek.com/icon.png"
+          content="https://wwwc.shinyaigeek.com/icon.png"
         />
         <meta name="twitter:site" content="@Shinyaigeek" />
         <meta name="twitter:card" content="summary" />
         {/* <link rel="icon" href="/static/icon.png" /> */}
       </Head>
+      {props.body && <PostContent body={props.body} />}
     </div>
   );
 };
 
-// @ts-ignore
-PostPage.getInitialProps = async req => {
-  const res = await fetch("http://localhost:3000/api/get-content/" + req.query.item , {
-    method: "GET",
-    mode: "cors",
-    credentials: "same-origin",
-    referrer: "no-referrer"
-  });
-  const json = await res.json();
-  console.log(json);
-  return { props: json };
+Item.getInitialProps = async (req: NextPageContext) => {
+  const res = await fetch(
+    "http://localhost:3000/api/get-content/" + req.query.item,
+    {
+      method: "GET",
+      mode: "cors",
+      credentials: "same-origin",
+      referrer: "no-referrer"
+    }
+  );
+  const props:PageInfo = await res.json();
+  return props;
 };
 
-export default withRouter(PostPage);
+export default Item;

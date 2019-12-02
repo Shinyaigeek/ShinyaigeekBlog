@@ -29,11 +29,11 @@ export default function Header(props: {}) {
           </a>
         </div>
         <div className="to">
-          <Link prefetch href="/profile">
+          {/* <Link prefetch href="/profile">
             <a className="toHome" href="/profile/">
               プロフィール
             </a>
-          </Link>
+          </Link> */}
         </div>
         <div className="to">
           <a href="/" className="toHome">
