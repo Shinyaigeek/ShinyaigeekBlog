@@ -1,5 +1,7 @@
 import React from 'react'
 
+import parser from "react-html-parser"
+
 interface Props {
     body:string
 }
@@ -7,7 +9,7 @@ interface Props {
 export default function PostContent(props:Props) {
     return (
         <div>
-            {props.body}
+            {parser(props.body)}
         </div>
     )
 }
