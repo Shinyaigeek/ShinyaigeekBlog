@@ -1,15 +1,13 @@
-import React from 'react'
+import React from "react";
 
-import parser from "react-html-parser"
+import { PageInfo } from "../pages/post/[item]";
+
+import parser from "react-html-parser";
 
 interface Props {
-    body:string
+  pageInfo: PageInfo;
 }
 
-export default function PostContent(props:Props) {
-    return (
-        <div>
-            {parser(props.body)}
-        </div>
-    )
+export default function PostContent(props: Props) {
+  return <div>{parser(props.pageInfo.body)}</div>;
 }
