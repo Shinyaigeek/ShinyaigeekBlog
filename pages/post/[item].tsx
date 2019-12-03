@@ -5,6 +5,8 @@ import Head from "next/head";
 import fetch from "isomorphic-unfetch";
 import PostContent from "../../views/Post";
 
+import "../../style/post.scss";
+
 const fixHtml: Function = (handleShareFlag: Function) => (flag: boolean) => {
   const doc: HTMLElement = document.querySelector("html")!;
   if (doc) {
@@ -17,15 +19,17 @@ const fixHtml: Function = (handleShareFlag: Function) => (flag: boolean) => {
   }
 };
 
+export type header = {
+  name: string;
+  path: string;
+  tag: string[];
+  description: string;
+  img: string;
+  date: string;
+};
+
 export type PageInfo = {
-  header: {
-    name: string;
-    path: string;
-    tag: string[];
-    description: string;
-    img: string;
-    date: string;
-  };
+  header: header;
   body: string;
 };
 

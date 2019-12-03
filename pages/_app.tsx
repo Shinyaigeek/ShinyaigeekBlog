@@ -24,16 +24,16 @@ class App extends NextApp<PageInfo, {}, State> {
     this.setShowHamburgerMenu = this.setShowHamburgerMenu.bind(this);
   }
   setShowHamburgerMenu() {
-    console.log(this.state)
+    console.log(this.state);
     this.setState({
       ...this.state,
-      showHamburgerMenu: !this.state.showHamburgerMenu,
+      showHamburgerMenu: !this.state.showHamburgerMenu
     });
   }
   setShowContactModal() {
     this.setState({
       ...this.state,
-      showContactModal: !this.state.showContactModal,
+      showContactModal: !this.state.showContactModal
     });
   }
   render() {
@@ -46,7 +46,12 @@ class App extends NextApp<PageInfo, {}, State> {
           setShowHamburgerMenu={this.setShowHamburgerMenu}
           showHamburgerMenu={this.state.showHamburgerMenu}
         />
-        <Component {...this.props.pageProps} />
+        <div style={{
+          position:"relative",
+          top:"72px"
+        }}>
+          <Component {...this.props.pageProps} />
+        </div>
         <Footer />
       </Fragment>
     );
