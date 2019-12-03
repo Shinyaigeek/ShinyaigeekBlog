@@ -4,93 +4,92 @@ import Link from "next/link";
 
 import { Drawer } from "antd";
 
-// import "../assets/css/header.scss";
+import "../style/header.scss";
 
 interface Props {
-  contactFlag: boolean;
-  handleContactFlag: Function;
-  menuFlag: boolean;
-  handleMenuFlag: Function;
+  showContactModal: boolean;
+  setShowContactModal: Function;
+  showHamburgerMenu: boolean;
+  setShowHamburgerMenu: Function;
 }
 
-export default function Header(props: {}) {
+export default function Header(props: Props) {
   return (
     <div className="header">
-      <div className="title">
-        <a href="/" className="toHome">
-          <img src="/static/icon_transparent.png" />
+      <div className="header--title">
+        <a href="/" className="header--title__toHome">
+          <img src="/static/icon_transparent.png" alt="icon" className="header--title__icon" />
           しにゃいの学習帳
         </a>
       </div>
-      <div className="contents">
-        <div className="to">
-          <a className="toHome" href="/">
+      <div className="header--contents">
+        <div className="header--contents__anchorBlock">
+          <a className="header--contents__anchor" href="/">
             ブログ
           </a>
         </div>
-        <div className="to">
-          {/* <Link prefetch href="/profile">
-            <a className="toHome" href="/profile/">
+        <div className="header--contents__anchorBlock">
+          <Link href="/profile">
+            <a className="header--contents__anchor" href="/profile/">
               プロフィール
             </a>
-          </Link> */}
+          </Link>
         </div>
-        <div className="to">
-          <a href="/" className="toHome">
+        <div className="header--contents__anchorBlock">
+          <a href="/" className="header--contents__anchor">
             作品集
           </a>
         </div>
         <div
-          className="to"
+          className="header--contents__anchorBlock"
           onClick={() => {
-            // props.handleContactFlag(true);
+            props.setShowContactModal();
           }}>
           コンタクト
         </div>
       </div>
-      {/* <div className="contents_hamberger">
+      <div className="header--contentsHamburger">
         <div
-          className={!props.menuFlag ? "menu-trigger" : "menu-trigger active"}
-          id="menu-trigger02"
+          className={!props.showHamburgerMenu ? "hamburger--menu__trigger" : "hamburger--menu__trigger__active"}
           onClick={() => {
-            props.handleMenuFlag(!props.menuFlag);
+            props.setShowHamburgerMenu();
           }}>
-          <span />
-          <span />
-          <span />
+          <span className="hamburger--menu__trigger__part"/>
+          <span className="hamburger--menu__trigger__part"/>
+          <span className="hamburger--menu__trigger__part" />
         </div>
         <Drawer
-          visible={props.menuFlag}
-          onClose={() => props.handleMenuFlag(false)}
+          visible={props.showHamburgerMenu}
+          onClose={() => props.setShowHamburgerMenu()}
           width="100%"
           closable={false}
-          className="drawer">
-          <div className="menu--list">
-            <div className="to">
-              <a href="/" className="toHome">
+          className="hamburgerMenu--content">
+          <div className="hamburgerMenu--content">
+            <div className="header--contents__anchorBlock">
+              <a href="/" className="header--contents__anchor">
                 ブログ
               </a>
             </div>
-            <div className="to">
-              <a href="/profile" className="toHome">
+            <div className="header--contents__anchorBlock">
+              <a href="/profile" className="header--contents__anchor">
                 プロフィール
               </a>
             </div>
-            <div className="to">
-              <a href="/" className="toHome">
+            <div className="header--contents__anchorBlock">
+              <a href="/" className="header--contents__anchor">
                 作品集
               </a>
             </div>
             <div
-              className="to"
+              className="header--contents__anchorBlock"
               onClick={() => {
-                props.handleContactFlag(true);
+                props.setShowContactModal();
               }}>
               コンタクト
             </div>
           </div>
         </Drawer>
-      </div> */}
+      </div>
     </div>
   );
 }

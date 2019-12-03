@@ -5,6 +5,8 @@ import Head from "next/head";
 import fetch from "isomorphic-unfetch";
 import PostContent from "../../views/Post";
 
+import "../../style/post.scss";
+
 const fixHtml: Function = (handleShareFlag: Function) => (flag: boolean) => {
   const doc: HTMLElement = document.querySelector("html")!;
   if (doc) {
@@ -17,49 +19,45 @@ const fixHtml: Function = (handleShareFlag: Function) => (flag: boolean) => {
   }
 };
 
-interface PageInfo {
-  header: {
-    name: string;
-    path: string;
-    tag: string[];
-    description: string;
-    img: string;
-    date: string;
-  };
-  body: string;
-}
+export type header = {
+  name: string;
+  path: string;
+  tag: string[];
+  description: string;
+  img: string;
+  date: string;
+};
 
-const Item: NextPage< PageInfo > = props => {
-  // const [shareFlag, handleShareFlag] = useState(false);
+export type PageInfo = {
+  header: header;
+  body: string;
+};
+
+const Item: NextPage<PageInfo> = props => {
+  const [shareFlag, handleShareFlag] = useState(false);
   console.log(props, "this");
   return (
     <div>
       <Head>
-        {/* <title>しにゃいの学習帳｜{props.router.query.postInfo.name}</title> */}
-        <meta
-          name="description"
-          //   content={props.router.query.postInfo.description}
-        />
+        <title>しにゃいの学習帳｜{props.header.name}</title>
+        <meta name="description" content={props.header.description} />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="author" content="しにゃい" />
         <meta property="og:url" content="https://www.shinyaigeek.com" />
         <meta
           property="og:title"
-          //   content={"しにゃいの学習帳｜" + props.router.query.postInfo.name}
+          content={"しにゃいの学習帳｜" + props.header.name}
         />
-        <meta
-          property="og:description"
-          //   content={props.router.query.postInfo.description}
-        />
+        <meta property="og:description" content={props.header.description} />
         <meta
           property="og:image"
           content="https://wwwc.shinyaigeek.com/icon.png"
         />
         <meta name="twitter:site" content="@Shinyaigeek" />
         <meta name="twitter:card" content="summary" />
-        {/* <link rel="icon" href="/static/icon.png" /> */}
+        <link rel="icon" href="/static/icon.png" />
       </Head>
-      {props.body && <PostContent body={props.body} />}
+      {props.body && <PostContent pageInfo={props} />}
     </div>
   );
 };
@@ -74,7 +72,7 @@ Item.getInitialProps = async (req: NextPageContext) => {
       referrer: "no-referrer"
     }
   );
-  const props:PageInfo = await res.json();
+  const props: PageInfo = await res.json();
   return props;
 };
 
