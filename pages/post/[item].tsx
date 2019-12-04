@@ -4,7 +4,9 @@ import { NextPage, NextPageContext, NextApiResponse } from "next";
 import Head from "next/head";
 import fetch from "isomorphic-unfetch";
 import PostContent from "../../views/Post";
+import { Anchor } from 'antd';
 
+const { Link } = Anchor;
 import "../../style/post.scss";
 
 const fixHtml: Function = (handleShareFlag: Function) => (flag: boolean) => {
@@ -31,6 +33,7 @@ export type header = {
 export type PageInfo = {
   header: header;
   body: string;
+  headings:null | string[]
 };
 
 const Item: NextPage<PageInfo> = props => {

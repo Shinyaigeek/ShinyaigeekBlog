@@ -11,9 +11,14 @@ export default (req: Http2ServerRequest, res: Http2ServerResponse) => {
   );
   const fmedItem = fm(rawItem);
   const header = fmedItem.attributes;
-  const body = marked(fmedItem.body).replace(/\n/g, "<br>");
+  const content = marked(fmedItem.body).replace(/\n/g, "<br>");
+  const headings: string[] | null = content.match(/<h2 id=".+?">.+?<\/h2>/g);
+  const body = content.replace(/<h2 id=".+?">/g,(target) => {
+    const id = target.replace('<h2 id="',"").replace('">',"")
+    return `<h2 id="${encodeURI(id)}">`
+  });
   res.setHeader("Content-Type", "application/json");
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.statusCode = 200;
-  res.end(JSON.stringify({ header: header, body: body }));
+  res.end(JSON.stringify({ header: header, body: body, headings: headings }));
 };
