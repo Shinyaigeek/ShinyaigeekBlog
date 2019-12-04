@@ -13,16 +13,12 @@ export default (req: Http2ServerRequest, res: Http2ServerResponse) => {
   const header = fmedItem.attributes;
   const content = marked(fmedItem.body).replace(/\n/g, "<br>");
   const headings: string[] | null = content.match(/<h2 id=".+?">.+?<\/h2>/g);
-  console.log(headings, "iiiii");
-  let links: string = "";
-  headings &&
-    headings.forEach(link => {
-      const name = link.split('"')[1];
-      links += `<a href="#${name}">${name}</a>`;
-    });
-  const body = links + content;
+  const body = content.replace(/<h2 id=".+?">/g,(target) => {
+    const id = target.replace('<h2 id="',"").replace('">',"")
+    return `<h2 id="${encodeURI(id)}">`
+  });
   res.setHeader("Content-Type", "application/json");
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.statusCode = 200;
-  res.end(JSON.stringify({ header: header, body: body }));
+  res.end(JSON.stringify({ header: header, body: body, headings: headings }));
 };
