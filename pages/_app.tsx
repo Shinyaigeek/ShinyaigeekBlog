@@ -4,14 +4,14 @@ import React, { Fragment } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-import { PageInfo } from "./post/[item]";
+import { PageInfo,header } from "./post/[item]";
 
 interface State {
   showHamburgerMenu: boolean;
   showContactModal: boolean;
 }
 
-class App extends NextApp<PageInfo, {}, State> {
+class App extends NextApp<PageInfo & {headers:header[]}, {}, State> {
   constructor(props: PageInfo) {
     // @ts-ignore
     super(props);
@@ -24,7 +24,6 @@ class App extends NextApp<PageInfo, {}, State> {
     this.setShowHamburgerMenu = this.setShowHamburgerMenu.bind(this);
   }
   setShowHamburgerMenu() {
-    console.log(this.state);
     this.setState({
       ...this.state,
       showHamburgerMenu: !this.state.showHamburgerMenu
@@ -50,7 +49,7 @@ class App extends NextApp<PageInfo, {}, State> {
           position:"relative",
           top:"72px"
         }}>
-          <Component {...this.props.pageProps} />
+          <Component {...this.props.pageProps} {...this.props.headers} />
         </div>
         <Footer />
       </Fragment>

@@ -38,7 +38,6 @@ export type PageInfo = {
 
 const Item: NextPage<PageInfo> = props => {
   const [shareFlag, handleShareFlag] = useState(false);
-  console.log(props, "this");
   return (
     <div>
       <Head>
