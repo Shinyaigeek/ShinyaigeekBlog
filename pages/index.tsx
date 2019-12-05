@@ -7,6 +7,8 @@ import Link from "next/link";
 import { header } from "./post/[item]";
 import fetch from "isomorphic-unfetch";
 
+import ItemList from "../components/ItemList";
+
 interface Props {
   headers: header[];
 }
@@ -15,16 +17,9 @@ const Index: NextPage<Props> = props => {
   console.log(props);
   return (
     <div>
-      {/* <Link href="/post/25">ポストえ</Link> */}
-      {
-        props.headers.map((header) => {
-          return (
-            <div>
-              {header.name}
-              </div>
-          )
-        })
-      }
+      {props.headers.map(header => {
+        return <ItemList {...header} />;
+      })}
     </div>
   );
 };
