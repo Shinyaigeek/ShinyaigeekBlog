@@ -5,7 +5,7 @@ import React from "react";
 
 import * as emailjs from "emailjs-com";
 
-// import "../assets/css/mailform.scss";
+import "../style/mailform.scss"
 
 const { TextArea } = Input;
 
@@ -73,32 +73,32 @@ export default class MailForm extends React.Component<
         visible={this.props.showContactModal}
         onCancel={() => this.props.setShowContactModal()}
         onOk={this.mailSubmit}
-        className="modal"
+        className="mailform--modal"
         width={300}
       >
-        <div className="name">
-          <span className="text">名前：</span>
+        <div className="mailform--name">
+          <span className="mailform--name__text">名前：</span>
           <Input
             type="text"
-            className="form"
+            className="mailform--name__form"
             value={this.state.yourName}
             placeholder="Your Name"
             name="yourName"
             onChange={(event) => this.handleChange(event.target.value, "yourName")}
           />
         </div>
-        <div className="subject">
-          <span className="text">件名：</span>
+        <div className="mailform--subject">
+          <span className="mailform--subject__text">件名：</span>
           <Input
             type="text"
             value={this.state.subject}
             placeholder="Subject"
             name="subject"
             onChange={(event) => this.handleChange(event.target.value, "subject")}
-            className="form"
+            className="mailform--subject__form"
           />
         </div>
-        <div className="mailaddress">
+        <div className="mailform--mailaddress">
           <span className="text">メールアドレス：</span>
           <Input
             type="email"
@@ -106,7 +106,7 @@ export default class MailForm extends React.Component<
             placeholder="Your Email Address"
             name="yourAddress"
             onChange={(event) => this.handleChange(event.target.value, "yourAddress")}
-            className="form"
+            className="mailform--mailaddress_form"
           />
         </div>
         <TextArea
