@@ -24,7 +24,6 @@ class App extends NextApp<PageInfo & {headers:header[]}, {}, State> {
     this.setShowHamburgerMenu = this.setShowHamburgerMenu.bind(this);
   }
   setShowHamburgerMenu() {
-    console.log(this.state);
     this.setState({
       ...this.state,
       showHamburgerMenu: !this.state.showHamburgerMenu

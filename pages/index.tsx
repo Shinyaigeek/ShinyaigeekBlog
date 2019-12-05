@@ -14,7 +14,6 @@ interface Props {
 }
 
 const Index: NextPage<Props> = props => {
-  console.log(props);
   return (
     <div>
       {props.headers.map(header => {
