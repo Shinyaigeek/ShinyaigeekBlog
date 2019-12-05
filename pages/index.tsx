@@ -15,8 +15,16 @@ const Index: NextPage<Props> = props => {
   console.log(props);
   return (
     <div>
-      Hello Next
       {/* <Link href="/post/25">ポストえ</Link> */}
+      {
+        props.headers.map((header) => {
+          return (
+            <div>
+              {header.name}
+              </div>
+          )
+        })
+      }
     </div>
   );
 };
