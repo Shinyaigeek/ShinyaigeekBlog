@@ -45,10 +45,9 @@ export default class MailForm extends React.Component<
     this.mailSubmit = this.mailSubmit.bind(this);
   }
 
-  handleChange(e: any, where: keyof State) {
-    const { value } = e.target;
+  handleChange(e: string, where: keyof State) {
     let state: State = Object.assign({}, this.state);
-    state[where] = value;
+    state[where] = e;
     this.setState(state);
   }
 
@@ -85,7 +84,7 @@ export default class MailForm extends React.Component<
             value={this.state.yourName}
             placeholder="Your Name"
             name="yourName"
-            onChange={(event: any) => this.handleChange(event, "yourName")}
+            onChange={(event) => this.handleChange(event.target.value, "yourName")}
           />
         </div>
         <div className="subject">
@@ -95,7 +94,7 @@ export default class MailForm extends React.Component<
             value={this.state.subject}
             placeholder="Subject"
             name="subject"
-            onChange={(event: any) => this.handleChange(event, "subject")}
+            onChange={(event) => this.handleChange(event.target.value, "subject")}
             className="form"
           />
         </div>
@@ -106,7 +105,7 @@ export default class MailForm extends React.Component<
             value={this.state.yourAddress}
             placeholder="Your Email Address"
             name="yourAddress"
-            onChange={(event: any) => this.handleChange(event, "yourAddress")}
+            onChange={(event) => this.handleChange(event.target.value, "yourAddress")}
             className="form"
           />
         </div>
@@ -114,7 +113,7 @@ export default class MailForm extends React.Component<
           value={this.state.content}
           placeholder="Content"
           name="content"
-          onChange={(event: any) => this.handleChange(event, "content")}
+          onChange={(event) => this.handleChange(event.target.value, "content")}
           autosize={{ minRows: 5 }}
         />
       </Modal>
