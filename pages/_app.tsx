@@ -49,7 +49,7 @@ class App extends NextApp<PageInfo & {headers:header[]}, {}, State> {
           position:"relative",
           top:"72px"
         }}>
-          <Component {...this.props.pageProps} {...this.props.headers} />
+          <Component {...this.props.pageProps} {...this.props.headers} setShowContactModal={this.setShowContactModal} />
         </div>
         <Footer />
       </Fragment>
