@@ -3,6 +3,7 @@ import NextApp from "next/app";
 import React, { Fragment } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Tags from "../components/Tags"
 
 import { PageInfo,header } from "./post/[item]";
 
@@ -51,6 +52,7 @@ class App extends NextApp<PageInfo & {headers:header[]}, {}, State> {
         }}>
           <Component {...this.props.pageProps} {...this.props.headers} />
         </div>
+        <Tags />
         <Footer />
       </Fragment>
     );
