@@ -53,9 +53,10 @@ const Index: NextPage<Props> = props => {
 
 Index.getInitialProps = async req => {
   const page = Number(req.query.page) || 1;
-  const tag = req.query.tag
+  const tag = req.query.tag;
+  const url = tag ? "http://localhost:3000/api/get-items/index?page=" + page + "&tag=" + tag :"http://localhost:3000/api/get-items/index?page=" + page;
   const res = await fetch(
-    "http://localhost:3000/api/get-items/index?page=" + page + "&tag=" + tag,
+    url,
     {
       method: "GET",
       mode: "cors",
