@@ -2,32 +2,32 @@ import fs from "fs";
 import { Http2ServerRequest, Http2ServerResponse } from "http2";
 import fm from "front-matter";
 import { getQueryParam } from "../../../script/getQueryParam";
+import { header } from "../../post/[item]";
 
 export default (req: Http2ServerRequest, res: Http2ServerResponse) => {
   const { url } = req;
   const itemNum = fs.readdirSync("./items").length;
-
   const queryParams = getQueryParam(
     url.slice(url.indexOf("?") + 1, url.length)
   );
-  const itemInfos = Array(itemNum)
-    .fill(1)
-    .map((item, index, tar) => {
-      const rawItem = fs.readFileSync(
-        "./items/" + (itemNum - index) + ".md",
-        "utf8"
-      );
-      return fm(rawItem).attributes;
-    });
+  const page = queryParams.page || 1;
+  const tag = queryParams.tag
+  const itemInfos: header[] = [];
+  for (let i = itemNum - (page - 1) * 10; i > 0; i--) {
+    if(itemInfos.length >= 10){
+      break;
+    }
+    const header = fm(fs.readFileSync("./items/" + i + ".md", "utf8")).attributes as header;
+    if(!tag || header.tag.includes(queryParams.tag)){
+      itemInfos.push(header)
+    }
+  }
   res.setHeader("Content-Type", "application/json");
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.statusCode = 200;
   res.end(
     JSON.stringify({
-      headers: itemInfos.slice(
-        10 * queryParams.page - 10,
-        10 * queryParams.page
-      ),
+      headers: itemInfos,
       totalItem: itemNum
     })
   );
