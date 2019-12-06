@@ -24,7 +24,7 @@ const Index: NextPage<Props> = props => {
 };
 
 Index.getInitialProps = async req => {
-  const res = await fetch("http://localhost:3000/api/get-items/index", {
+  const res = await fetch("http://localhost:3000/api/get-items/index?page=2", {
     method: "GET",
     mode: "cors",
     credentials: "same-origin",

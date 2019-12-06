@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "next",
-    "build": "next build",
+    "start": "next --mode=production",
+    "build": "next build --mode=development",
     "export": "next build && next export -o dist"
   },
   "repository": {
