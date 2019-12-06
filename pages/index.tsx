@@ -2,23 +2,32 @@ import React from "react";
 import { NextPage } from "next";
 
 import "../style/home.scss";
-import { withRouter } from "next/router";
+import { withRouter, useRouter } from "next/router";
 import Link from "next/link";
 import { header } from "./post/[item]";
 import fetch from "isomorphic-unfetch";
 
-import { getQueryParam } from "../script/getQueryParam"
-
 import { Result, Button, Pagination } from "antd";
 
 import ItemList from "../components/ItemList";
+import { WithRouterProps } from "next/dist/client/with-router";
 
 interface Props {
   headers: header[];
-  totalItem:number
+  totalItem: number;
 }
 
 const Index: NextPage<Props> = props => {
+  const router = useRouter()
+  const page = ((router.query.page as any) as number) || 1;
+  console.log(router)
+  function pageChange(page:number) {
+    let params = "/?page=" + page;
+    router.query.tag && (params += "&tag=" + router.query.tag);
+    router.query.sort && (params += "&sort=" + router.query.sort);
+    router.push(params);
+    scrollTo(0,0)
+  }
   return (
     <div>
       {props.headers.length !== 0 &&
@@ -37,7 +46,7 @@ const Index: NextPage<Props> = props => {
           }
         />
       )}
-      <Pagination simple defaultCurrent={2} total={props.totalItem} />
+      <Pagination simple defaultCurrent={page} total={props.totalItem} onChange={(page) => pageChange(page)} />
     </div>
   );
 };
