@@ -19,32 +19,32 @@ export default function Header(props: Props) {
   return (
     <div className="header">
       <div className="header--title">
-        <a href="/" className="header--title__toHome">
-          <img
-            src="/static/icon_transparent.png"
-            alt="icon"
-            className="header--title__icon"
-          />
-          しにゃいの学習帳
-        </a>
+        <Link href="/">
+          <div>
+            <img
+              src="/static/icon_transparent.png"
+              alt="icon"
+              className="header--title__icon"
+            />
+            しにゃいの学習帳
+          </div>
+        </Link>
       </div>
       <div className="header--contents">
         <div className="header--contents__anchorBlock">
-          <a className="header--contents__anchor" href="/">
+          <Link href="/">
             ブログ
-          </a>
-        </div>
-        <div className="header--contents__anchorBlock">
-          <Link href="/profile">
-            <a className="header--contents__anchor" href="/profile/">
-              プロフィール
-            </a>
           </Link>
         </div>
         <div className="header--contents__anchorBlock">
-          <a href="/" className="header--contents__anchor">
+          <Link href="/profile">
+              プロフィール
+          </Link>
+        </div>
+        <div className="header--contents__anchorBlock">
+          <Link href="/">
             作品集
-          </a>
+          </Link>
         </div>
         <div
           className="header--contents__anchorBlock"
@@ -80,19 +80,19 @@ export default function Header(props: Props) {
         >
           <div className="hamburgerMenu--content">
             <div className="header--contents__anchorBlock">
-              <a href="/" className="header--contents__anchor">
+              <Link href="/">
                 ブログ
-              </a>
+              </Link>
             </div>
             <div className="header--contents__anchorBlock">
-              <a href="/profile" className="header--contents__anchor">
+              <Link href="/profile">
                 プロフィール
-              </a>
+              </Link>
             </div>
             <div className="header--contents__anchorBlock">
-              <a href="/" className="header--contents__anchor">
+              <Link href="/">
                 作品集
-              </a>
+              </Link>
             </div>
             <div
               className="header--contents__anchorBlock"
