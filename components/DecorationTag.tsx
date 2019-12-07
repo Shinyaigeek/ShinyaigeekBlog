@@ -11,7 +11,8 @@ export default function DecorationTag(props: Props) {
     <div
       style={{
         display: "flex",
-        width: "80%"
+        width: "80%",
+        padding:"12px 0"
       }}
     >
       {props.tags.map((tag, index) => {

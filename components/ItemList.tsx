@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import { header } from "../pages/post/[item]";
 
-// import MiniTags from "../components/miniTags";
+import DecorationTag from "../components/DecorationTag";
 
 const { Meta } = Card;
 
@@ -23,7 +23,7 @@ export default function Item(props: header) {
         }}
       >
         <Meta title={props.name} description={props.description} />
-        {/* <MiniTags contents={props.tag} /> */}
+        <DecorationTag tags={props.tag} />
       </Card>
     </Link>
   );
