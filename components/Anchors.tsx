@@ -4,7 +4,7 @@ import { Anchor, Dropdown, Icon } from "antd";
 const { Link } = Anchor;
 
 export default function Anchors(props: { headings: string[] }) {
-  const [showHeadings, setShowHeadings] = useState(true);
+  const [showHeadings, setShowHeadings] = useState(false);
   function Headings() {
     return (
       <Anchor>
@@ -27,7 +27,8 @@ export default function Anchors(props: { headings: string[] }) {
       style={{
         position: "fixed",
         top: "72px",
-        fontSize: "22px"
+        fontSize: "22px",
+        zIndex:1050
       }}
     >
       <Dropdown

@@ -18,15 +18,15 @@ interface Props {
 }
 
 const Index: NextPage<Props> = props => {
-  const router = useRouter()
+  const router = useRouter();
   const page = ((router.query.page as any) as number) || 1;
-  console.log(router)
-  function pageChange(page:number) {
+  console.log(router);
+  function pageChange(page: number) {
     let params = "/?page=" + page;
     router.query.tag && (params += "&tag=" + router.query.tag);
     router.query.sort && (params += "&sort=" + router.query.sort);
     router.push(params);
-    scrollTo(0,0)
+    scrollTo(0, 0);
   }
   return (
     <div>
@@ -46,7 +46,18 @@ const Index: NextPage<Props> = props => {
           }
         />
       )}
-      <Pagination simple defaultCurrent={page} total={props.totalItem} onChange={(page) => pageChange(page)} />
+      <div style={{
+        width:"200px",
+        margin:"0 auto",
+        padding:"12px 0 52px 0"
+      }}>
+        <Pagination
+          simple
+          defaultCurrent={page}
+          total={props.totalItem}
+          onChange={page => pageChange(page)}
+        />
+      </div>
     </div>
   );
 };
@@ -54,16 +65,15 @@ const Index: NextPage<Props> = props => {
 Index.getInitialProps = async req => {
   const page = Number(req.query.page) || 1;
   const tag = req.query.tag;
-  const url = tag ? "http://localhost:3000/api/get-items/index?page=" + page + "&tag=" + tag :"http://localhost:3000/api/get-items/index?page=" + page;
-  const res = await fetch(
-    url,
-    {
-      method: "GET",
-      mode: "cors",
-      credentials: "same-origin",
-      referrer: "no-referrer"
-    }
-  );
+  const url = tag
+    ? "http://localhost:3000/api/get-items/index?page=" + page + "&tag=" + tag
+    : "http://localhost:3000/api/get-items/index?page=" + page;
+  const res = await fetch(url, {
+    method: "GET",
+    mode: "cors",
+    credentials: "same-origin",
+    referrer: "no-referrer"
+  });
   const headers: Props = await res.json();
   return headers;
 };

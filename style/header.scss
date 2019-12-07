@@ -72,7 +72,7 @@
       }
     }
 
-    &__anchor {
+    a {
       text-decoration: none;
       color: $theme_text;
     }
@@ -166,7 +166,7 @@
 .hamburgerMenu--content {
   font-family: Crayon;
   position: absolute;
-  top: 0;
+  top: 72px;
   left: 0;
   width: 100vw;
   height: 100vh;
@@ -176,7 +176,7 @@
   .header--contents__anchorBlock {
     font-size: 42px;
     margin: 15px auto 15px 30px;
-    .header--contents__anchor {
+    a {
       text-decoration: none;
       color: $theme_text;
     }
