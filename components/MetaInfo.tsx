@@ -1,5 +1,7 @@
 import React from "react";
 
+import DecorationTag from "../components/DecorationTag"
+
 import { Tag,Icon } from "antd";
 
 export default function MetaInfo(props: {
@@ -11,11 +13,7 @@ export default function MetaInfo(props: {
     <div>
       <h1>{props.name}</h1>
       <div><Icon type="edit" />{props.date}</div>
-      {
-          props.tag.map((tag) => {
-              <Tag>{tag}</Tag>
-          })
-      }
+      <DecorationTag tags={props.tag} />
     </div>
   );
 }
