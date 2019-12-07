@@ -27,7 +27,8 @@ export default function Anchors(props: { headings: string[] }) {
       style={{
         position: "fixed",
         top: "72px",
-        fontSize: "22px"
+        fontSize: "22px",
+        zIndex:1050
       }}
     >
       <Dropdown
