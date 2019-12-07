@@ -7,6 +7,8 @@ import Anchors from "../components/Anchors";
 import parser from "react-html-parser";
 import Meta from "antd/lib/card/Meta";
 
+import { Divider } from "antd";
+
 interface Props {
   pageInfo: PageInfo;
 }
@@ -14,8 +16,11 @@ interface Props {
 export default function PostContent(props: Props) {
   return (
     <div className="post--content">
-      {props.pageInfo.headings && <Anchors headings={props.pageInfo.headings} />}
+      {props.pageInfo.headings && (
+        <Anchors headings={props.pageInfo.headings} />
+      )}
       <MetaInfo {...props.pageInfo.header} />
+      <Divider />
       {parser(props.pageInfo.body)}
     </div>
   );

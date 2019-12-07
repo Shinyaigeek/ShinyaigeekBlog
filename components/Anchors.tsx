@@ -4,7 +4,7 @@ import { Anchor, Dropdown, Icon } from "antd";
 const { Link } = Anchor;
 
 export default function Anchors(props: { headings: string[] }) {
-  const [showHeadings, setShowHeadings] = useState(true);
+  const [showHeadings, setShowHeadings] = useState(false);
   function Headings() {
     return (
       <Anchor>
