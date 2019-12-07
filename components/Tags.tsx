@@ -61,14 +61,17 @@ export default function Tags() {
     <div
       className="tags"
       style={{
-        marginTop: "300px"
+        width: "80%",
+        margin: "45px auto 6px auto"
       }}
     >
       {tags.map((tag: Tags, index: number) => (
         <Link href={`?tag=${tag.tagNameEn}`}>
-          <div style={{
-              display:"inline-block"
-          }}>
+          <div
+            style={{
+              display: "inline-block"
+            }}
+          >
             <Tag
               color={tag.tagColor}
               id={tag.tagNameEn}
