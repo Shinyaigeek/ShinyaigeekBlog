@@ -74,6 +74,7 @@ export default function Header(props: Props) {
           visible={props.showHamburgerMenu}
           onClose={() => props.setShowHamburgerMenu()}
           width="100%"
+          zIndex={2000}
           closable={false}
           className="hamburgerMenu--content"
         >

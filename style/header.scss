@@ -1,10 +1,10 @@
 @import "./_core/variable";
 
-@import '~antd/dist/antd.css';
+@import "~antd/dist/antd.css";
 
 @font-face {
   font-family: "Crayon";
-  src: url("./font/crayon_1-1.ttf");
+  src: url("/static/font/crayon_1-1.ttf");
   unicode-range: U+3057, U+306B, U+3083, U+3044, U+306E, U+5B66, U+7FD2, U+5E33,
     U+30DD, U+30FC, U+30C8, U+30D5, U+30A3, U+30A9, U+30EA, U+30AA, U+30D7,
     U+30ED, U+30EB, U+4F5C, U+54C1, U+96C6, U+30D6, U+30B0, U+30B3, U+30F3,
@@ -80,8 +80,6 @@
 
   .header--contentsHamburger {
     display: block;
-
-  
 
     .hamburger--menu__trigger,
     .hamburger--menu__trigger .hamburger--menu__trigger__part {
@@ -166,23 +164,21 @@
 }
 
 .hamburgerMenu--content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right:0;
-    width: 100%;
-    height: 100vh;
-    color: $theme_text;
-    background: $menu_background;
+  font-family: Crayon;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  color: $theme_text;
+  background: $menu_background;
 
-    .header--contents__anchorBlock {
-      font-family: Crayon;
-      font-size: 42px;
+  .header--contents__anchorBlock {
+    font-size: 42px;
+    margin: 15px auto 15px 30px;
+    .header--contents__anchor {
       text-decoration: none;
-      margin: 15px auto 15px 30px;
-      .header--contents__anchor {
-        text-decoration: none;
-        color: $theme_text;
-      }
+      color: $theme_text;
     }
   }
+}
