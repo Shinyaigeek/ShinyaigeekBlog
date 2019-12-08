@@ -4,7 +4,8 @@ import { NextPage, NextPageContext, NextApiResponse } from "next";
 import Head from "next/head";
 import fetch from "isomorphic-unfetch";
 import PostContent from "../../views/Post";
-import { Anchor ,Result,Button} from "antd";
+import { Anchor, Result, Button } from "antd";
+import path from "path";
 
 const { Link } = Anchor;
 import "../../style/post.scss";
@@ -86,15 +87,16 @@ const Item: NextPage<Props & PageInfo, PageInfo> = props => {
 };
 
 Item.getInitialProps = async (req: NextPageContext) => {
-  const res = await fetch(
-    "http://localhost:3000/api/get-content/" + req.query.item,
-    {
-      method: "GET",
-      mode: "cors",
-      credentials: "same-origin",
-      referrer: "no-referrer"
-    }
-  );
+  const url =
+    process.env.API_ENV === "localhost"
+      ? "http://localhost:3000"
+      : "https://shinayigeek-development.now.sh";
+  const res = await fetch(url + "/api/get-content/" + req.query.item, {
+    method: "GET",
+    mode: "cors",
+    credentials: "same-origin",
+    referrer: "no-referrer"
+  });
   const props: PageInfo = await res.json();
   return props;
 };

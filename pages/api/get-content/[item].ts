@@ -2,12 +2,13 @@ import fs from "fs";
 import fm from "front-matter";
 import marked from "marked";
 import { Http2ServerRequest, Http2ServerResponse } from "http2";
+import path from "path"
 
 export default (req: Http2ServerRequest, res: Http2ServerResponse) => {
   const { url } = req;
   try {
     const rawItem = fs.readFileSync(
-      "/items" + url.slice(url.lastIndexOf("/"), url.length) + ".md",
+      path.join("/items" + url.slice(url.lastIndexOf("/"), url.length) + ".md",__dirname),
       "utf8"
     );
     const fmedItem = fm(rawItem);
@@ -21,7 +22,6 @@ export default (req: Http2ServerRequest, res: Http2ServerResponse) => {
     res.setHeader("Content-Type", "application/json");
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.statusCode = 200;
-    console.log(header, body, headings);
     res.end(JSON.stringify({ header: header, body: body, headings: headings }));
   } catch (e) {
     const header = {
