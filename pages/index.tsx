@@ -2,15 +2,13 @@ import React from "react";
 import { NextPage } from "next";
 
 import "../style/home.scss";
-import { withRouter, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import { header } from "./post/[item]";
-import fetch from "isomorphic-unfetch";
 
 import { Result, Button, Pagination } from "antd";
 
 import ItemList from "../components/ItemList";
-import { WithRouterProps } from "next/dist/client/with-router";
 import Welcome from "../components/Welcome";
 
 interface Props {

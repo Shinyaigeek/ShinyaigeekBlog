@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { PageInfo } from "../pages/post/[item]";
 import MetaInfo from "../components/MetaInfo";
 import Anchors from "../components/Anchors";
-// import ShareModal from "../components/ShareModal";
-import ThatsMe from "../components/ThatsMe";
 
 import parser from "react-html-parser";
-import Meta from "antd/lib/card/Meta";
 
 import dynamic from "next/dynamic";
 
 const ShareModal = dynamic(() => import("../components/ShareModal"));
+const ThatsMe = dynamic(() => import("../components/ThatsMe"))
 
 import { Divider, Button, Icon } from "antd";
 

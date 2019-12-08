@@ -1,15 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { withRouter, makePublicRouterInstance } from "next/router";
-import { NextPage, NextPageContext, NextApiResponse } from "next";
+import React, { useState } from "react";
+import { NextPage, NextPageContext } from "next";
 import Head from "next/head";
-import fetch from "isomorphic-unfetch";
 import PostContent from "../../views/Post";
 import { Anchor, Result, Button } from "antd";
-import path from "path";
-import fs from "fs";
-import fm from "front-matter";
 import marked from "marked";
-import { Http2ServerRequest, Http2ServerResponse } from "http2";
 
 const { Link } = Anchor;
 import "../../style/post.scss";
@@ -34,7 +28,6 @@ type Props = {
 };
 
 const Item: NextPage<Props & PageInfo, PageInfo> = props => {
-  const [shareFlag, handleShareFlag] = useState(false);
   return (
     <div>
       <Head>
@@ -56,13 +49,12 @@ const Item: NextPage<Props & PageInfo, PageInfo> = props => {
         <meta name="twitter:card" content="summary" />
         <link rel="icon" href="/static/icon.png" />
       </Head>
-      {props.body && (
+      {props.body ? (
         <PostContent
           pageInfo={props}
           setShowContactModal={props.setShowContactModal}
         />
-      )}
-      {/* {props.body || (
+      ) : (
         <Result
           status="404"
           title="404"
@@ -73,7 +65,7 @@ const Item: NextPage<Props & PageInfo, PageInfo> = props => {
             </a>
           }
         />
-      )} */}
+      )}
     </div>
   );
 };
