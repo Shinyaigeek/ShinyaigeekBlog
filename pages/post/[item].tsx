@@ -14,18 +14,6 @@ import { Http2ServerRequest, Http2ServerResponse } from "http2";
 const { Link } = Anchor;
 import "../../style/post.scss";
 
-const fixHtml: Function = (handleShareFlag: Function) => (flag: boolean) => {
-  const doc: HTMLElement = document.querySelector("html")!;
-  if (doc) {
-    if (flag) {
-      doc.style.overflow = "hidden";
-    } else {
-      doc.style.overflow = "visible";
-    }
-    return handleShareFlag(flag);
-  }
-};
-
 export type header = {
   name: string;
   path: string;
