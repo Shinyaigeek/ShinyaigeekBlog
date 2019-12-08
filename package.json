@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "next",
-    "build": "next build",
+    "start": "API_ENV=local next",
+    "build": "API_ENV=zeit next build",
     "export": "next build && next export -o dist"
   },
   "repository": {

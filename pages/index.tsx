@@ -68,9 +68,10 @@ const Index: NextPage<Props> = props => {
 Index.getInitialProps = async req => {
   const page = Number(req.query.page) || 1;
   const tag = req.query.tag;
-  const url = tag
-    ? "http://localhost:3000/api/get-items/index?page=" + page + "&tag=" + tag
-    : "http://localhost:3000/api/get-items/index?page=" + page;
+  const queryParam = tag ? "?page=" + page + "&tag=" + tag:"?page=" + page;
+  const url = process.env.API_ENV === "zeit"
+    ? "http://shinayigeek-development.now.sh/api/get-items/index" + queryParam
+    : "http://localhost:3000/api/get-items/index" + queryParam
   const res = await fetch(url, {
     method: "GET",
     mode: "cors",
