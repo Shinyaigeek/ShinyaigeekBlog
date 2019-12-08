@@ -36,7 +36,11 @@ export type PageInfo = {
   headings:null | string[]
 };
 
-const Item: NextPage<PageInfo> = props => {
+type Props = {
+  setShowContactModal:Function
+}
+
+const Item: NextPage<Props & PageInfo,PageInfo> = props => {
   const [shareFlag, handleShareFlag] = useState(false);
   return (
     <div>
@@ -59,7 +63,7 @@ const Item: NextPage<PageInfo> = props => {
         <meta name="twitter:card" content="summary" />
         <link rel="icon" href="/static/icon.png" />
       </Head>
-      {props.body && <PostContent pageInfo={props} />}
+      {props.body && <PostContent pageInfo={props} setShowContactModal={props.setShowContactModal} />}
     </div>
   );
 };

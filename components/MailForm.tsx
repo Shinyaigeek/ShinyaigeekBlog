@@ -75,6 +75,7 @@ export default class MailForm extends React.Component<
         onOk={this.mailSubmit}
         className="mailform--modal"
         width={300}
+        zIndex={2400}
       >
         <div className="mailform--name">
           <span className="mailform--name__text">名前：</span>
