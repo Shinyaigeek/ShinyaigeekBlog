@@ -2,15 +2,13 @@ import React from "react";
 import { NextPage } from "next";
 
 import "../style/home.scss";
-import { withRouter, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import { header } from "./post/[item]";
-import fetch from "isomorphic-unfetch";
 
 import { Result, Button, Pagination } from "antd";
 
 import ItemList from "../components/ItemList";
-import { WithRouterProps } from "next/dist/client/with-router";
 import Welcome from "../components/Welcome";
 
 interface Props {
@@ -32,8 +30,8 @@ const Index: NextPage<Props> = props => {
     <div>
       <Welcome />
       {props.headers.length !== 0 &&
-        props.headers.map(header => {
-          return <ItemList {...header} />;
+        props.headers.map((header, index) => {
+          return <ItemList {...header} key={`itemlist__${index}`} />;
         })}
       {props.headers.length === 0 && (
         <Result
@@ -67,18 +65,26 @@ const Index: NextPage<Props> = props => {
 
 Index.getInitialProps = async req => {
   const page = Number(req.query.page) || 1;
-  const tag = req.query.tag;
-  const url = tag
-    ? "http://localhost:3000/api/get-items/index?page=" + page + "&tag=" + tag
-    : "http://localhost:3000/api/get-items/index?page=" + page;
-  const res = await fetch(url, {
-    method: "GET",
-    mode: "cors",
-    credentials: "same-origin",
-    referrer: "no-referrer"
-  });
-  const headers: Props = await res.json();
-  return headers;
+  const tag = req.query.tag as string;
+  const itemNum = require.context("../items", true, /\.md$/).keys().length;
+  let totalNum = 0;
+  const itemInfos: header[] = [];
+  for (let i = itemNum - (page - 1) * 10; i > 0; i--) {
+    const header = await import("../items/" + i + ".md").then(item => {
+      return item.attributes as header;
+    });
+    if (!tag || header.tag.includes(tag)) {
+      if (itemInfos.length <= 9) {
+        itemInfos.push(header);
+      }
+      totalNum += 1;
+    }
+  }
+
+  return {
+    headers: itemInfos,
+    totalItem: totalNum
+  };
 };
 
 export default Index;

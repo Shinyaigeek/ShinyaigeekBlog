@@ -1,25 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { withRouter, makePublicRouterInstance } from "next/router";
-import { NextPage, NextPageContext, NextApiResponse } from "next";
+import React, { useState } from "react";
+import { NextPage, NextPageContext } from "next";
 import Head from "next/head";
-import fetch from "isomorphic-unfetch";
 import PostContent from "../../views/Post";
-import { Anchor } from 'antd';
+import { Anchor, Result, Button } from "antd";
+import marked from "marked";
 
 const { Link } = Anchor;
 import "../../style/post.scss";
-
-const fixHtml: Function = (handleShareFlag: Function) => (flag: boolean) => {
-  const doc: HTMLElement = document.querySelector("html")!;
-  if (doc) {
-    if (flag) {
-      doc.style.overflow = "hidden";
-    } else {
-      doc.style.overflow = "visible";
-    }
-    return handleShareFlag(flag);
-  }
-};
 
 export type header = {
   name: string;
@@ -33,15 +20,14 @@ export type header = {
 export type PageInfo = {
   header: header;
   body: string;
-  headings:null | string[]
+  headings: null | string[];
 };
 
 type Props = {
-  setShowContactModal:Function
-}
+  setShowContactModal: Function;
+};
 
-const Item: NextPage<Props & PageInfo,PageInfo> = props => {
-  const [shareFlag, handleShareFlag] = useState(false);
+const Item: NextPage<Props & PageInfo, PageInfo> = props => {
   return (
     <div>
       <Head>
@@ -63,23 +49,58 @@ const Item: NextPage<Props & PageInfo,PageInfo> = props => {
         <meta name="twitter:card" content="summary" />
         <link rel="icon" href="/static/icon.png" />
       </Head>
-      {props.body && <PostContent pageInfo={props} setShowContactModal={props.setShowContactModal} />}
+      {props.body ? (
+        <PostContent
+          pageInfo={props}
+          setShowContactModal={props.setShowContactModal}
+        />
+      ) : (
+        <Result
+          status="404"
+          title="404"
+          subTitle="Sorry, the page you visited does not exist."
+          extra={
+            <a href="/">
+              <Button type="primary">Back Home</Button>
+            </a>
+          }
+        />
+      )}
     </div>
   );
 };
 
 Item.getInitialProps = async (req: NextPageContext) => {
-  const res = await fetch(
-    "http://localhost:3000/api/get-content/" + req.query.item,
-    {
-      method: "GET",
-      mode: "cors",
-      credentials: "same-origin",
-      referrer: "no-referrer"
-    }
-  );
-  const props: PageInfo = await res.json();
-  return props;
+  try {
+    const item = await import("../../items/" + req.query.item + ".md");
+    const header = item.attributes as header;
+    const content = marked(item.body).replace(/\n/g, "<br>");
+    const headings: string[] | null = content.match(/<h2 id=".+?">.+?<\/h2>/g);
+    const body = content.replace(/<h2 id=".+?">/g, (target: string) => {
+      const id = target.replace('<h2 id="', "").replace('">', "");
+      return `<h2 id="${encodeURI(id)}">`;
+    });
+    return {
+      header: header,
+      body: body,
+      headings: headings
+    };
+  } catch (e) {
+    console.log(e);
+    const header: header = {
+      name: "not found",
+      path: "not found",
+      tag: [],
+      description: "not found",
+      img: "not found",
+      date: "not found"
+    };
+    return {
+      header: header,
+      body: "not found",
+      headings: null
+    };
+  }
 };
 
 export default Item;

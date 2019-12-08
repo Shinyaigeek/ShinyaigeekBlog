@@ -1,11 +1,10 @@
-import { Input } from "antd";
-import { Modal } from "antd";
+import { Input, Modal, notification, Icon } from "antd";
 
 import React from "react";
 
 import * as emailjs from "emailjs-com";
 
-import "../style/mailform.scss"
+import "../style/mailform.scss";
 
 const { TextArea } = Input;
 
@@ -62,8 +61,39 @@ export default class MailForm extends React.Component<
     var service_id = "default_service";
     var template_id = "template_vmKwN61k";
     var user_id = "user_lxYZJTHqNDAhtluEIHAmV";
-    await emailjs.send(service_id, template_id, template_params, user_id);
-    return this.props.setShowContactModal();
+    this.props.setShowContactModal();
+    await emailjs
+      .send(service_id, template_id, template_params, user_id)
+      .then(() => {
+        notification.open({
+          icon: (
+            <Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" />
+          ),
+          message: (
+            <div className="contact--message">
+              メッセージの送信に成功しました！
+            </div>
+          ),
+          placement: "bottomRight"
+        });
+      })
+      .catch(() => {
+        notification.open({
+          message: (
+            <div className="contact--message">
+              <div>メッセージの送信に失敗しました</div>
+              <div
+                className="contact--message__again"
+                onClick={() => this.props.setShowContactModal()}
+              >
+                Again?
+              </div>
+            </div>
+          ),
+          icon: <Icon type="warning" theme="twoTone" twoToneColor="#eb2f96" />,
+          placement: "bottomRight"
+        });
+      });
   }
 
   render() {
@@ -85,7 +115,9 @@ export default class MailForm extends React.Component<
             value={this.state.yourName}
             placeholder="Your Name"
             name="yourName"
-            onChange={(event) => this.handleChange(event.target.value, "yourName")}
+            onChange={event =>
+              this.handleChange(event.target.value, "yourName")
+            }
           />
         </div>
         <div className="mailform--subject">
@@ -95,7 +127,7 @@ export default class MailForm extends React.Component<
             value={this.state.subject}
             placeholder="Subject"
             name="subject"
-            onChange={(event) => this.handleChange(event.target.value, "subject")}
+            onChange={event => this.handleChange(event.target.value, "subject")}
             className="mailform--subject__form"
           />
         </div>
@@ -106,7 +138,9 @@ export default class MailForm extends React.Component<
             value={this.state.yourAddress}
             placeholder="Your Email Address"
             name="yourAddress"
-            onChange={(event) => this.handleChange(event.target.value, "yourAddress")}
+            onChange={event =>
+              this.handleChange(event.target.value, "yourAddress")
+            }
             className="mailform--mailaddress_form"
           />
         </div>
@@ -114,8 +148,8 @@ export default class MailForm extends React.Component<
           value={this.state.content}
           placeholder="Content"
           name="content"
-          onChange={(event) => this.handleChange(event.target.value, "content")}
-          autosize={{ minRows: 5 }}
+          onChange={event => this.handleChange(event.target.value, "content")}
+          autoSize={{ minRows: 5 }}
         />
       </Modal>
     );
