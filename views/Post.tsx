@@ -3,11 +3,15 @@ import React, { useEffect, useState } from "react";
 import { PageInfo } from "../pages/post/[item]";
 import MetaInfo from "../components/MetaInfo";
 import Anchors from "../components/Anchors";
-import ShareModal from "../components/ShareModal";
+// import ShareModal from "../components/ShareModal";
 import ThatsMe from "../components/ThatsMe";
 
 import parser from "react-html-parser";
 import Meta from "antd/lib/card/Meta";
+
+import dynamic from "next/dynamic";
+
+const ShareModal = dynamic(() => import("../components/ShareModal"));
 
 import { Divider, Button, Icon } from "antd";
 
@@ -18,6 +22,15 @@ interface Props {
 
 export default function PostContent(props: Props) {
   const [showShareModal, setShowShareModal] = useState(false);
+
+  function handleFlag(flag: boolean) {
+    if (flag) {
+      document.querySelector("html")!.style.overflow = "hidden";
+    } else {
+      document.querySelector("html")!.style.overflow = "visible";
+    }
+    setShowShareModal(flag);
+  }
   return (
     <div className="post--content">
       {props.pageInfo.headings && (
@@ -33,12 +46,16 @@ export default function PostContent(props: Props) {
           shape="circle"
           icon="share-alt"
           size="large"
-          className="share--button__under"
-          onClick={() => setShowShareModal(true)}
+          onClick={() => handleFlag(true)}
+          style={{
+            position: "fixed",
+            bottom: "72px",
+            right: "72px"
+          }}
         />
         <ShareModal
           showShareModal={showShareModal}
-          setShowShareModal={setShowShareModal}
+          setShowShareModal={handleFlag}
         >
           <div className="share--Twitter">
             <a

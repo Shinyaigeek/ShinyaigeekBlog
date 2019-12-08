@@ -56,7 +56,6 @@ const tags = [
 ];
 
 export default function Tags() {
-  const router = useRouter();
   return (
     <div
       className="tags"
@@ -66,7 +65,7 @@ export default function Tags() {
       }}
     >
       {tags.map((tag: Tags, index: number) => (
-        <Link href={`?tag=${tag.tagNameEn}`}>
+        <Link href={`?tag=${tag.tagNameEn}`} key={`tag__${index}`}>
           <div
             style={{
               display: "inline-block"

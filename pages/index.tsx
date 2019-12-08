@@ -32,8 +32,8 @@ const Index: NextPage<Props> = props => {
     <div>
       <Welcome />
       {props.headers.length !== 0 &&
-        props.headers.map(header => {
-          return <ItemList {...header} />;
+        props.headers.map((header, index) => {
+          return <ItemList {...header} key={`itemlist__${index}`} />;
         })}
       {props.headers.length === 0 && (
         <Result

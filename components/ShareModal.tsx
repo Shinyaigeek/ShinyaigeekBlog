@@ -14,57 +14,55 @@ export default function ShareModal(props: Props) {
 
   const [modalHeight, setModalHeight] = useState(0);
 
+  const positionTop = process.browser
+    ? window.innerHeight - 90 - childrenNum
+    : 0;
+
   useEffect(() => {
     handleWindowSizeChange();
     window.addEventListener("resize", handleWindowSizeChange);
   }, []);
 
   function handleWindowSizeChange() {
-    setModalHeight(window.innerHeight - 90 - childrenNum);
+    setModalHeight(0);
   }
 
   function handleMove(y: number) {
-    setModalHeight(y);
+    setModalHeight(-positionTop + y);
   }
 
   function handleRemoveTouch(y: number) {
-    const height = window.innerHeight - 90 - childrenNum;
-    handleMove(height);
-    if (y >= height * 1.2) {
-      props.setShowShareModal(false);
+      console.log((window.innerHeight - positionTop) / (window.innerHeight - y))
+    if((window.innerHeight - positionTop) / (window.innerHeight - y) >= 1.25){
+        props.setShowShareModal(false)
     }
-  }
-
-  function handleFlag(flag: boolean) {
-    if (flag) {
-      document.querySelector("html")!.style.overflow = "hidden";
-    } else {
-      document.querySelector("html")!.style.overflow = "visible";
-    }
-    props.setShowShareModal(flag);
+    setModalHeight(0)
   }
 
   return (
-    <div
-      className={`twitter--modal__${show} twitter--modal`}
-      onTouchMove={e => handleMove(e.changedTouches[0].clientY)}
-      onTouchEnd={e => handleRemoveTouch(e.changedTouches[0].clientY)}
-      style={{
-          top: modalHeight
-      }}
-    >
-      {props.children}
+    <React.Fragment>
       <div
-        className="modal--section__cansel"
-        onClick={() => props.setShowShareModal(false)}
+        className={`twitter--modal__${show} twitter--modal`}
+        onTouchMove={e => handleMove(e.changedTouches[0].clientY)}
+        onTouchEnd={e => handleRemoveTouch(e.changedTouches[0].clientY)}
+        style={{
+          top: props.showShareModal ? positionTop : "110vh",
+          transform: "translateY(" + modalHeight + "px)"
+        }}
       >
-        キャンセル
+        {props.children}
+        <div
+          className="modal--section__cansel"
+          onClick={() => props.setShowShareModal(false)}
+        >
+          キャンセル
+        </div>
       </div>
       <div
         className="awkward--sheet"
         onClick={() => props.setShowShareModal(false)}
         style={{ display: props.showShareModal ? "block" : "none" }}
       ></div>
-    </div>
+    </React.Fragment>
   );
 }

@@ -8,7 +8,7 @@ export default function Anchors(props: { headings: string[] }) {
   function Headings() {
     return (
       <Anchor offsetTop={108} onClick={() => setShowHeadings(false)}>
-        {props.headings.map(heading => {
+        {props.headings.map((heading,index) => {
           const cont = heading
             .replace(/<h2 id=".+?">/, "")
             .replace("</h2>", "");
@@ -16,6 +16,7 @@ export default function Anchors(props: { headings: string[] }) {
             <Link
               href={`#${encodeURI(cont.toLowerCase()).replace(/%20/g, "-")}`}
               title={`${cont}`}
+              key={`anchor__${index}`}
             />
           );
         })}
