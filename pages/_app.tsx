@@ -9,6 +9,8 @@ import { PageInfo, header } from "./post/[item]";
 
 import { initGA, logPageView } from "../utils/analytics.js";
 
+import CookieConsent from "react-cookie-consent";
+
 interface State {
   showHamburgerMenu: boolean;
   showContactModal: boolean;
@@ -73,6 +75,21 @@ class App extends NextApp<PageInfo & { headers: header[] }, {}, State> {
         </div>
         <Tags />
         <Footer />
+        <CookieConsent
+					location="bottom"
+					acceptOnScroll={true}
+					buttonText="I understand"
+					declineButtonText="I decline"
+					cookieName="myAwesomeCookieName2"
+					style={{ background: "#2B373B" }}
+					buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
+					expires={150}
+				>
+					This website uses cookies to enhance the user experience.{" "}
+					<span style={{ fontSize: "10px" }}>
+						This bit of text is smaller :O
+					</span>
+				</CookieConsent>
       </Fragment>
     );
   }

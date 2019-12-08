@@ -5,8 +5,8 @@ import "../style/home.scss";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { header } from "./post/[item]";
-
-import { Result, Button, Pagination } from "antd";
+import Head from "next/head";
+import { Result, Button, Pagination, BackTop } from "antd";
 
 import ItemList from "../components/ItemList";
 import Welcome from "../components/Welcome";
@@ -28,23 +28,41 @@ const Index: NextPage<Props> = props => {
   }
   return (
     <div>
-      <Welcome />
-      {props.headers.length !== 0 &&
-        props.headers.map((header, index) => {
-          return <ItemList {...header} key={`itemlist__${index}`} />;
-        })}
-      {props.headers.length === 0 && (
-        <Result
-          status="404"
-          title="404"
-          subTitle="Sorry, the page you visited does not exist."
-          extra={
-            <Link href="/">
-              <Button type="primary">Back Home</Button>
-            </Link>
-          }
+      <Head>
+        <title>しにゃいの学習帳</title>
+        <meta name="description" content="webが大好きな大学生のブログ" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="author" content="しにゃい" />
+        <meta property="og:url" content="https://www.shinyaigeek.com" />
+        <meta property="og:title" content="しにゃいの学習帳" />
+        <meta property="og:description" content="webが大好きな大学生のブログ" />
+        <meta
+          property="og:image"
+          content="https://wwwc.shinyaigeek.com/icon.png"
         />
-      )}
+        <meta name="twitter:site" content="@Shinyaigeek" />
+        <meta name="twitter:card" content="summary" />
+        <link rel="icon" href="/static/icon.png" />
+      </Head>
+      <Welcome />
+      <div id="home--items">
+        {props.headers.length !== 0 &&
+          props.headers.map((header, index) => {
+            return <ItemList {...header} key={`itemlist__${index}`} />;
+          })}
+        {props.headers.length === 0 && (
+          <Result
+            status="404"
+            title="404"
+            subTitle="Sorry, the page you visited does not exist."
+            extra={
+              <Link href="/">
+                <Button type="primary">Back Home</Button>
+              </Link>
+            }
+          />
+        )}
+      </div>
       <div
         style={{
           width: "200px",
@@ -59,6 +77,7 @@ const Index: NextPage<Props> = props => {
           onChange={page => pageChange(page)}
         />
       </div>
+      <BackTop />
     </div>
   );
 };

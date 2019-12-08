@@ -39,7 +39,7 @@ const Profile: NextPage<Props> = (props:Props) => {
         <link rel="icon" href="/static/icon.png" />
       </Head>
       <div>
-        <img src="/static/icon.png" />
+        <img src="/static/icon.png" alt="icon"/>
         <div className="name">しにゃい/Shinyaigeek</div>
         <div className="social">
           <div className="twitter">

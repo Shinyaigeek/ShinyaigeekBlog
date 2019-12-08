@@ -38,7 +38,7 @@ export default function Header(props: Props) {
         </div>
         <div className="header--contents__anchorBlock">
           <Link href="/profile">
-            <a>プロフィール></a>
+            <a>プロフィール</a>
           </Link>
         </div>
         <div className="header--contents__anchorBlock">

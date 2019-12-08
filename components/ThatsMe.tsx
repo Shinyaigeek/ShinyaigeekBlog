@@ -15,7 +15,7 @@ export default function ThatsMe(props: Props) {
     <div className="thatsMe">
       <Link href="/profile">
         <a>
-          <img src="/static/icon.png" className="thatsMe--icon" />
+          <img src="/static/icon.png" className="thatsMe--icon" alt="icon" />
         </a>
       </Link>
       しにゃい/Shinyaigeek

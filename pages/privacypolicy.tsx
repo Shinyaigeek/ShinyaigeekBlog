@@ -1,10 +1,27 @@
 import React from "react";
 import { NextPage } from "next";
 import withRouter, { WithRouterProps } from "next/dist/client/with-router";
+import Head from "next/head";
 
 const PripacyPolicy: NextPage<WithRouterProps> = () => {
   return (
     <div>
+      <Head>
+        <title>しにゃいの学習帳</title>
+        <meta name="description" content="webが大好きな大学生のブログ" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="author" content="しにゃい" />
+        <meta property="og:url" content="https://www.shinyaigeek.com" />
+        <meta property="og:title" content="しにゃいの学習帳" />
+        <meta property="og:description" content="webが大好きな大学生のブログ" />
+        <meta
+          property="og:image"
+          content="https://wwwc.shinyaigeek.com/icon.png"
+        />
+        <meta name="twitter:site" content="@Shinyaigeek" />
+        <meta name="twitter:card" content="summary" />
+        <link rel="icon" href="/static/icon.png" />
+      </Head>
       <h4>広告の配信について</h4>
       当サイトは第三者配信の広告サービス「Google Adsense
       グーグルアドセンス」を利用しています。

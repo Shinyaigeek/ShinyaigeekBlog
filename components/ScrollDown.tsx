@@ -1,5 +1,9 @@
 import React from "react";
 
+import { Anchor } from "antd";
+
+const { Link } = Anchor;
+
 import "../style/scrolldown.scss"
 
 export default function ScrollDown() {

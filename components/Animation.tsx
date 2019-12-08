@@ -22,6 +22,7 @@ export default function Animation() {
               height: "100%",
               objectFit: "contain"
             }}
+            alt="monkey-icon"
           />
         </div>
         <div
@@ -42,6 +43,7 @@ export default function Animation() {
                 objectFit: "contain"
               }}
               src="/static/earth.png"
+              alt="earth"
             />
           </div>
         </div>
