@@ -4,7 +4,7 @@ import { NextPage, NextPageContext, NextApiResponse } from "next";
 import Head from "next/head";
 import fetch from "isomorphic-unfetch";
 import PostContent from "../../views/Post";
-import { Anchor } from 'antd';
+import { Anchor ,Result,Button} from "antd";
 
 const { Link } = Anchor;
 import "../../style/post.scss";
@@ -33,14 +33,14 @@ export type header = {
 export type PageInfo = {
   header: header;
   body: string;
-  headings:null | string[]
+  headings: null | string[];
 };
 
 type Props = {
-  setShowContactModal:Function
-}
+  setShowContactModal: Function;
+};
 
-const Item: NextPage<Props & PageInfo,PageInfo> = props => {
+const Item: NextPage<Props & PageInfo, PageInfo> = props => {
   const [shareFlag, handleShareFlag] = useState(false);
   return (
     <div>
@@ -63,7 +63,24 @@ const Item: NextPage<Props & PageInfo,PageInfo> = props => {
         <meta name="twitter:card" content="summary" />
         <link rel="icon" href="/static/icon.png" />
       </Head>
-      {props.body && <PostContent pageInfo={props} setShowContactModal={props.setShowContactModal} />}
+      {props.body && (
+        <PostContent
+          pageInfo={props}
+          setShowContactModal={props.setShowContactModal}
+        />
+      )}
+      {props.body || (
+        <Result
+          status="404"
+          title="404"
+          subTitle="Sorry, the page you visited does not exist."
+          extra={
+            <a href="/">
+              <Button type="primary">Back Home</Button>
+            </a>
+          }
+        />
+      )}
     </div>
   );
 };
