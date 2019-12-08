@@ -32,19 +32,13 @@ export default function Header(props: Props) {
       </div>
       <div className="header--contents">
         <div className="header--contents__anchorBlock">
-          <Link href="/">
-            ブログ
-          </Link>
+          <Link href="/">ブログ</Link>
         </div>
         <div className="header--contents__anchorBlock">
-          <Link href="/profile">
-              プロフィール
-          </Link>
+          <Link href="/profile">プロフィール</Link>
         </div>
         <div className="header--contents__anchorBlock">
-          <Link href="/">
-            作品集
-          </Link>
+          <Link href="/">作品集</Link>
         </div>
         <div
           className="header--contents__anchorBlock"
@@ -79,20 +73,14 @@ export default function Header(props: Props) {
           className="hamburgerMenu--content"
         >
           <div className="hamburgerMenu--content">
-            <div className="header--contents__anchorBlock">
-              <Link href="/">
-                ブログ
-              </Link>
+            <div className="header--contents__anchorBlock" onClick={() => props.setShowHamburgerMenu()}>
+              <Link href="/">ブログ</Link>
             </div>
-            <div className="header--contents__anchorBlock">
-              <Link href="/profile">
-                プロフィール
-              </Link>
+            <div className="header--contents__anchorBlock" onClick={() => props.setShowHamburgerMenu()}>
+              <Link href="/profile">プロフィール</Link>
             </div>
-            <div className="header--contents__anchorBlock">
-              <Link href="/">
-                作品集
-              </Link>
+            <div className="header--contents__anchorBlock" onClick={() => props.setShowHamburgerMenu()}>
+              <Link href="/">作品集</Link>
             </div>
             <div
               className="header--contents__anchorBlock"
