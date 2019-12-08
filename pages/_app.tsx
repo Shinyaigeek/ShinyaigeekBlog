@@ -3,16 +3,18 @@ import NextApp from "next/app";
 import React, { Fragment } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Tags from "../components/Tags"
+import Tags from "../components/Tags";
 
-import { PageInfo,header } from "./post/[item]";
+import { PageInfo, header } from "./post/[item]";
+
+import { initGA, logPageView } from "../utils/analytics.js";
 
 interface State {
   showHamburgerMenu: boolean;
   showContactModal: boolean;
 }
 
-class App extends NextApp<PageInfo & {headers:header[]}, {}, State> {
+class App extends NextApp<PageInfo & { headers: header[] }, {}, State> {
   constructor(props: PageInfo) {
     // @ts-ignore
     super(props);
@@ -36,6 +38,17 @@ class App extends NextApp<PageInfo & {headers:header[]}, {}, State> {
       showContactModal: !this.state.showContactModal
     });
   }
+
+  componentDidMount() {
+    // @ts-ignore
+    if (!window.GA_INITIALIZED) {
+      initGA();
+      // @ts-ignore
+      window.GA_INITIALIZED = true;
+    }
+    logPageView();
+  }
+
   render() {
     const { Component } = this.props;
     return (
@@ -46,11 +59,17 @@ class App extends NextApp<PageInfo & {headers:header[]}, {}, State> {
           setShowHamburgerMenu={this.setShowHamburgerMenu}
           showHamburgerMenu={this.state.showHamburgerMenu}
         />
-        <div style={{
-          position:"relative",
-          top:"72px"
-        }}>
-          <Component {...this.props.pageProps} {...this.props.headers} setShowContactModal={this.setShowContactModal} />
+        <div
+          style={{
+            position: "relative",
+            top: "72px"
+          }}
+        >
+          <Component
+            {...this.props.pageProps}
+            {...this.props.headers}
+            setShowContactModal={this.setShowContactModal}
+          />
         </div>
         <Tags />
         <Footer />
