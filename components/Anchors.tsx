@@ -7,7 +7,7 @@ export default function Anchors(props: { headings: string[] }) {
   const [showHeadings, setShowHeadings] = useState(false);
   function Headings() {
     return (
-      <Anchor>
+      <Anchor offsetTop={108} onClick={() => setShowHeadings(false)}>
         {props.headings.map(heading => {
           const cont = heading
             .replace(/<h2 id=".+?">/, "")
