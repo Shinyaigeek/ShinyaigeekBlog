@@ -13,7 +13,7 @@
     margin: 0 auto;
     border: 1px solid #ffffff;
     border-radius: 1px;
-    animation: scroll-down 3s infinite;
+    animation: scroll-down 1s infinite;
   }
 }
 
@@ -23,14 +23,17 @@
   }
   25% {
     transform: translateY(-50px);
-  }
-  40% {
-    transform: translateY(0px);
+    height:16px;
   }
   50% {
-    transform: translateY(-15px);
+    transform: translateY(0px);
+    height:25px;
   }
-  55% {
+  70% {
+    transform: translateY(-15px);
+    height:14px
+  }
+  95% {
     transform: translateY(0px);
   }
 }
