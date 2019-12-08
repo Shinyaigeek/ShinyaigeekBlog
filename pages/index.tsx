@@ -11,6 +11,7 @@ import { Result, Button, Pagination } from "antd";
 
 import ItemList from "../components/ItemList";
 import { WithRouterProps } from "next/dist/client/with-router";
+import Welcome from "../components/Welcome";
 
 interface Props {
   headers: header[];
@@ -20,7 +21,6 @@ interface Props {
 const Index: NextPage<Props> = props => {
   const router = useRouter();
   const page = ((router.query.page as any) as number) || 1;
-  console.log(router);
   function pageChange(page: number) {
     let params = "/?page=" + page;
     router.query.tag && (params += "&tag=" + router.query.tag);
@@ -30,6 +30,7 @@ const Index: NextPage<Props> = props => {
   }
   return (
     <div>
+      <Welcome />
       {props.headers.length !== 0 &&
         props.headers.map(header => {
           return <ItemList {...header} />;
@@ -46,11 +47,13 @@ const Index: NextPage<Props> = props => {
           }
         />
       )}
-      <div style={{
-        width:"200px",
-        margin:"0 auto",
-        padding:"12px 0 52px 0"
-      }}>
+      <div
+        style={{
+          width: "200px",
+          margin: "0 auto",
+          padding: "12px 0 52px 0"
+        }}
+      >
         <Pagination
           simple
           defaultCurrent={page}
