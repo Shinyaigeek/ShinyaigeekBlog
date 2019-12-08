@@ -7,7 +7,7 @@ export default (req: Http2ServerRequest, res: Http2ServerResponse) => {
   const { url } = req;
   try {
     const rawItem = fs.readFileSync(
-      "./items" + url.slice(url.lastIndexOf("/"), url.length) + ".md",
+      "/items" + url.slice(url.lastIndexOf("/"), url.length) + ".md",
       "utf8"
     );
     const fmedItem = fm(rawItem);
