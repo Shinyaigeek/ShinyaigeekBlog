@@ -67,19 +67,26 @@ const Index: NextPage<Props> = props => {
 
 Index.getInitialProps = async req => {
   const page = Number(req.query.page) || 1;
-  const tag = req.query.tag;
-  const queryParam = tag ? "?page=" + page + "&tag=" + tag:"?page=" + page;
-  const url = process.env.API_ENV === "zeit"
-    ? "http://shinayigeek-development.now.sh/api/get-items/index" + queryParam
-    : "http://localhost:3000/api/get-items/index" + queryParam
-  const res = await fetch(url, {
-    method: "GET",
-    mode: "cors",
-    credentials: "same-origin",
-    referrer: "no-referrer"
-  });
-  const headers: Props = await res.json();
-  return headers;
+  const tag = req.query.tag as string;
+  const itemNum = require.context("../items", true, /\.md$/).keys().length;
+  let totalNum = 0;
+  const itemInfos: header[] = [];
+  for (let i = itemNum - (page - 1) * 10; i > 0; i--) {
+    const header = await import("../items/" + i + ".md").then(item => {
+      return item.attributes as header;
+    });
+    if (!tag || header.tag.includes(tag)) {
+      if (itemInfos.length <= 9) {
+        itemInfos.push(header);
+      }
+      totalNum += 1;
+    }
+  }
+
+  return {
+    headers: itemInfos,
+    totalItem: totalNum
+  };
 };
 
 export default Index;

@@ -6,6 +6,10 @@ import fetch from "isomorphic-unfetch";
 import PostContent from "../../views/Post";
 import { Anchor, Result, Button } from "antd";
 import path from "path";
+import fs from "fs";
+import fm from "front-matter";
+import marked from "marked";
+import { Http2ServerRequest, Http2ServerResponse } from "http2";
 
 const { Link } = Anchor;
 import "../../style/post.scss";
@@ -70,7 +74,7 @@ const Item: NextPage<Props & PageInfo, PageInfo> = props => {
           setShowContactModal={props.setShowContactModal}
         />
       )}
-      {props.body || (
+      {/* {props.body || (
         <Result
           status="404"
           title="404"
@@ -81,24 +85,42 @@ const Item: NextPage<Props & PageInfo, PageInfo> = props => {
             </a>
           }
         />
-      )}
+      )} */}
     </div>
   );
 };
 
 Item.getInitialProps = async (req: NextPageContext) => {
-  const url =
-    process.env.API_ENV === "localhost"
-      ? "http://localhost:3000"
-      : "https://shinayigeek-development.now.sh";
-  const res = await fetch(url + "/api/get-content/" + req.query.item, {
-    method: "GET",
-    mode: "cors",
-    credentials: "same-origin",
-    referrer: "no-referrer"
-  });
-  const props: PageInfo = await res.json();
-  return props;
+  try {
+    const item = await import("../../items/" + req.query.item + ".md");
+    const header = item.attributes as header;
+    const content = marked(item.body).replace(/\n/g, "<br>");
+    const headings: string[] | null = content.match(/<h2 id=".+?">.+?<\/h2>/g);
+    const body = content.replace(/<h2 id=".+?">/g, (target: string) => {
+      const id = target.replace('<h2 id="', "").replace('">', "");
+      return `<h2 id="${encodeURI(id)}">`;
+    });
+    return {
+      header: header,
+      body: body,
+      headings: headings
+    };
+  } catch (e) {
+    console.log(e);
+    const header: header = {
+      name: "not found",
+      path: "not found",
+      tag: [],
+      description: "not found",
+      img: "not found",
+      date: "not found"
+    };
+    return {
+      header: header,
+      body: "not found",
+      headings: null
+    };
+  }
 };
 
 export default Item;
