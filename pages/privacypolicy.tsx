@@ -16,11 +16,11 @@ const PripacyPolicy: NextPage<WithRouterProps> = () => {
         <meta property="og:description" content="webが大好きな大学生のブログ" />
         <meta
           property="og:image"
-          content="https://wwwc.shinyaigeek.com/icon.webp"
+          content="https://wwwc.shinyaigeek.com/icon.png"
         />
         <meta name="twitter:site" content="@Shinyaigeek" />
         <meta name="twitter:card" content="summary" />
-        <link rel="icon" href="/static/icon.webp" />
+        <link rel="icon" href="/static/icon.png" />
       </Head>
       <h4>広告の配信について</h4>
       当サイトは第三者配信の広告サービス「Google Adsense
