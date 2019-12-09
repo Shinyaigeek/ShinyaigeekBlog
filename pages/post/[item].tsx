@@ -75,7 +75,10 @@ Item.getInitialProps = async (req: NextPageContext) => {
   try {
     const item = await import("../../items/" + req.query.item + ".md");
     const header = item.attributes as header;
-    const content = marked(item.body,{
+    const content = marked(item.body, {
+      highlight: function(code) {
+        return require("highlight.js").highlightAuto(code).value;
+      }
     }).replace(/\n/g, "<br>");
     const headings: string[] | null = content.match(/<h2 id=".+?">.+?<\/h2>/g);
     const body = content.replace(/<h2 id=".+?">/g, (target: string) => {

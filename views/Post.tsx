@@ -9,7 +9,7 @@ import parser from "react-html-parser";
 import dynamic from "next/dynamic";
 
 const ShareModal = dynamic(() => import("../components/ShareModal"));
-const ThatsMe = dynamic(() => import("../components/ThatsMe"))
+const ThatsMe = dynamic(() => import("../components/ThatsMe"));
 
 import { Divider, Button, Icon } from "antd";
 
