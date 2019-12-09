@@ -22,7 +22,7 @@ export default function Header(props: Props) {
         <Link href="/">
           <div>
             <img
-              src="/static/icon_transparent.png"
+              src="/static/icon_transparent.webp"
               alt="icon"
               className="header--title__icon"
             />

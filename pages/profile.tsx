@@ -30,16 +30,16 @@ const Profile: NextPage<Props> = (props:Props) => {
         />
         <meta
           property="og:image"
-          content="https://www.shinyaigeek.com/icon.png"
+          content="https://www.shinyaigeek.com/icon.webp"
         />
         <meta property="og:image:width" content="600" />
         <meta property="og:image:height" content="600" />
         <meta name="twitter:site" content="@Shinyaigeek" />
         <meta name="twitter:card" content="summary" />
-        <link rel="icon" href="/static/icon.png" />
+        <link rel="icon" href="/static/icon.webp" />
       </Head>
       <div>
-        <img src="/static/icon.png" alt="icon"/>
+        <img src="/static/icon.webp" alt="icon"/>
         <div className="name">しにゃい/Shinyaigeek</div>
         <div className="social">
           <div className="twitter">

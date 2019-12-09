@@ -9,7 +9,7 @@ import "../style/welcome.scss";
 export default function Welcome() {
   return (
     <div className="welcome">
-      <img className="banana" src="/static/banana.png" alt="banana" />
+      <img className="banana" src="/static/banana.webp" alt="banana" />
       <ScrollDown />
       <Animation />
       <StarStream />

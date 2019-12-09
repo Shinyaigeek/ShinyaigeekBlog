@@ -5,7 +5,7 @@ const nextConfig = {
   compress:true,
   webpack: function(config, { dev, defaultLoaders }) {
     config.module.rules.push({
-      test: /\.(eot|woff|woff2|ttf|svg|png|jp g|gif)$/,
+      test: /\.(eot|woff|woff2|ttf|svg|png|jp g|gif|webp)$/,
       use: {
         loader: "url-loader"
       }
