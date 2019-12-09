@@ -1,6 +1,5 @@
 const withSass = require("@zeit/next-sass");
 const Mode = require('frontmatter-markdown-loader/mode')
-const withPurgeCss = require('next-purgecss')
 
 const nextConfig = {
   compress:true,
@@ -24,4 +23,4 @@ const nextConfig = {
   }
 };
 
-module.exports = withPurgeCss(withSass(nextConfig));
+module.exports = withSass(nextConfig);
