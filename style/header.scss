@@ -2,6 +2,25 @@
 
 @import "~antd/dist/antd.css";
 
+:root {
+  @media (prefers-color-scheme: light) {
+    --theme-background: #fcfcfc;
+    --theme-color: #1e1e1e;
+    --headings-color: #f2aaf2;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    --theme-background: #6e6d6c;
+    --theme-color: #e4e4e4;
+    --headings-color: #D2F0DA;
+  }
+}
+
+body{
+  background:var(--theme-background) !important;
+  color:var(--theme-color)!important;
+}
+
 @font-face {
   font-family: "Crayon";
   src: url("/static/font/crayon_1-1.ttf");

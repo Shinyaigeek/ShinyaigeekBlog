@@ -1,4 +1,4 @@
-@import "./_core/variable";
+
 
 .post--content {
   font-family: "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","-apple-system",BlinkMacSystemFont,sans-serif;
@@ -20,7 +20,7 @@
   h2 {
     &:before {
       content: "";
-      background-color: $headings_color;
+      background-color: var(--headings-color);
       border-radius: 4px;
       width: 12px;
       height: 30px;
