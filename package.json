@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "API_ENV=local next",
-    "build": "API_ENV=zeit next build",
+    "build": "next build --mode",
     "export": "next build && next export -o dist"
   },
   "repository": {
@@ -34,6 +34,7 @@
     "fs": "^0.0.1-security",
     "fs2": "^0.3.7",
     "global": "^4.4.0",
+    "highlight.js": "^9.16.2",
     "http": "^0.0.0",
     "isomorphic-unfetch": "^3.0.0",
     "markdown-loader": "^5.1.0",

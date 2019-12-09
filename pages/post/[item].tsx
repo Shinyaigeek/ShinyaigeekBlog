@@ -4,6 +4,7 @@ import Head from "next/head";
 import PostContent from "../../views/Post";
 import { Anchor, Result, Button } from "antd";
 import marked from "marked";
+// import highlight from "highlight.js"
 
 const { Link } = Anchor;
 import "../../style/post.scss";
@@ -74,7 +75,8 @@ Item.getInitialProps = async (req: NextPageContext) => {
   try {
     const item = await import("../../items/" + req.query.item + ".md");
     const header = item.attributes as header;
-    const content = marked(item.body).replace(/\n/g, "<br>");
+    const content = marked(item.body,{
+    }).replace(/\n/g, "<br>");
     const headings: string[] | null = content.match(/<h2 id=".+?">.+?<\/h2>/g);
     const body = content.replace(/<h2 id=".+?">/g, (target: string) => {
       const id = target.replace('<h2 id="', "").replace('">', "");

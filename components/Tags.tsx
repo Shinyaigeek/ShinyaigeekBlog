@@ -65,7 +65,7 @@ export default function Tags() {
       }}
     >
       {tags.map((tag: Tags, index: number) => (
-        <Link href={`?tag=${tag.tagNameEn}`} key={`tag__${index}`}>
+        <Link href={`/?tag=${tag.tagNameEn}`} key={`tag__${index}`}>
           <div
             style={{
               display: "inline-block"
