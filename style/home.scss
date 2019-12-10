@@ -29,4 +29,8 @@
 .item--card {
   background: var(--item-background) !important;
   border: 1px solid var(--item-border) !important;
+
+  &__img{
+    filter:var(--image-gray);
+  }
 }

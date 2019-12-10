@@ -2,7 +2,7 @@
 
 @import "~antd/dist/antd.css";
 
-body {
+:root {
   --theme-header: #1A161A;
   @media (prefers-color-scheme: light) {
     --theme-background: #fcfcfc;
@@ -13,6 +13,7 @@ body {
     --twitter-cancel: #e6ecf0;
     --item-background: #fff;
     --item-border: #F6E6FF;
+    --image-gray: grayscale(0%);
   }
 
   @media (prefers-color-scheme: dark) {
@@ -24,6 +25,7 @@ body {
     --twitter-cancel: #243447;
     --item-background: #7B7A79;
     --item-border: #A2A2A1;
+    --image-gray: grayscale(15%);
   }
 }
 
