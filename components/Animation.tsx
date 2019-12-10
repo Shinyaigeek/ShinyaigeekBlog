@@ -16,7 +16,7 @@ export default function Animation() {
           }}
         >
           <img
-            src="/static/icon_transparent.webp"
+            src="/static/icon_transparent.png"
             style={{
               width: "100%",
               height: "100%",
@@ -42,13 +42,12 @@ export default function Animation() {
                 width: "100%",
                 objectFit: "contain"
               }}
-              src="/static/earth.webp"
+              src="/static/earth.png"
               alt="earth"
             />
           </div>
         </div>
       </div>
-      );
     </div>
   );
 }

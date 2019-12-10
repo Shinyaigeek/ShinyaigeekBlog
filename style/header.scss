@@ -2,6 +2,38 @@
 
 @import "~antd/dist/antd.css";
 
+:root {
+  --theme-header: #1A161A;
+  @media (prefers-color-scheme: light) {
+    --theme-background: #fcfcfc;
+    --theme-color: #1e1e1e;
+    --headings-color: #f2aaf2;
+    --twitter-background:#fff;
+    --twitter-toggle: #e6ecf0;
+    --twitter-cancel: #e6ecf0;
+    --item-background: #fff;
+    --item-border: #F6E6FF;
+    --image-gray: grayscale(0%);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    --theme-background: #3C3C3B;
+    --theme-color: #e4e4e4;
+    --headings-color: #D2F0DA;
+    --twitter-background: #15202b;
+    --twitter-toggle: #1c2938;
+    --twitter-cancel: #243447;
+    --item-background: #7B7A79;
+    --item-border: #A2A2A1;
+    --image-gray: grayscale(15%);
+  }
+}
+
+body{
+  background:var(--theme-background) !important;
+  color:var(--theme-color)!important;
+}
+
 @font-face {
   font-family: "Crayon";
   src: url("/static/font/crayon_1-1.ttf");

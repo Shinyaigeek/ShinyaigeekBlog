@@ -1,7 +1,7 @@
-@import "./_core/variable";
-
-.home {
-  font-family: $core_font;
+.home--items {
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ",
+    Meiryo, "ＭＳ Ｐゴシック", "-apple-system", BlinkMacSystemFont, sans-serif;
+  color: var(--theme-color) !important;
   margin: 0 auto;
   width: 300px;
 
@@ -24,5 +24,14 @@
   .blog--contents {
     width: 300px;
     margin: 0 auto;
+  }
+}
+
+.item--card {
+  background: var(--item-background) !important;
+  border: 1px solid var(--item-border) !important;
+
+  &__img{
+    filter:var(--image-gray);
   }
 }

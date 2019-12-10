@@ -44,11 +44,11 @@ const Item: NextPage<Props & PageInfo, PageInfo> = props => {
         <meta property="og:description" content={props.header.description} />
         <meta
           property="og:image"
-          content="https://wwwc.shinyaigeek.com/icon.webp"
+          content="https://wwwc.shinyaigeek.com/icon.png"
         />
         <meta name="twitter:site" content="@Shinyaigeek" />
         <meta name="twitter:card" content="summary" />
-        <link rel="icon" href="/static/icon.webp" />
+        <link rel="icon" href="/static/icon.png" />
       </Head>
       {props.body ? (
         <PostContent
