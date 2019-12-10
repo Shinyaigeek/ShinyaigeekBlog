@@ -2,17 +2,27 @@
 
 @import "~antd/dist/antd.css";
 
-:root {
+body {
+  --theme-header: #1A161A;
   @media (prefers-color-scheme: light) {
     --theme-background: #fcfcfc;
     --theme-color: #1e1e1e;
     --headings-color: #f2aaf2;
+    --twitter-background:#fff;
+    --twitter-toggle: #e6ecf0;
+    --twitter-cancel: #e6ecf0;
+    --item-background: #fff;
   }
 
   @media (prefers-color-scheme: dark) {
-    --theme-background: #6e6d6c;
+    --theme-background: #3C3C3B;
     --theme-color: #e4e4e4;
     --headings-color: #D2F0DA;
+    --twitter-background: #15202b;
+    --twitter-toggle: #1c2938;
+    --twitter-cancel: #243447;
+    --item-background: #7B7A79;
+    --item-border: #A2A2A1;
   }
 }
 

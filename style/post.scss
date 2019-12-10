@@ -18,6 +18,7 @@
   }
 
   h2 {
+    color: var(--theme-color) !important;
     &:before {
       content: "";
       background-color: var(--headings-color);

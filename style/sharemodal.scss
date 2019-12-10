@@ -1,8 +1,8 @@
 .twitter--modal {
   width: 99vw;
   height: 110vh;
-  border: 1px solid #ffffff;
-  background-color: #ffffff;
+  border: 1px solid var(--twitter-background);
+  background-color: var(--twitter-background);
   z-index: 999;
   border-radius: 13px;
   position: fixed;
@@ -22,8 +22,8 @@
     content: " ";
     height: 5px;
     width: 11%;
-    border: 1px solid #e6ecf0;
-    background-color: #e6ecf0;
+    border: 1px solid var(--twitter-toggle);
+    background-color: var(--twitter-toggle);
     position: absolute;
     top: 9px;
     right: 0;
@@ -37,10 +37,10 @@
     text-align: center;
     font-size: 24px;
     padding: 0px 0;
-    height: 33px;
+    height: 38px;
 
     a {
-      color: #000;
+      color: var(--theme-color);
       text-decoration: none;
     }
   }
@@ -60,12 +60,12 @@
 }
 
 .modal--section__cansel {
-  border: 1px solid #e6ecf0;
-  background-color: #e6ecf0;
+  border: 1px solid var(--twitter-cancel);
+  background-color: var(--twitter-cancel);
   border-radius: 999px;
   text-align: center;
   width: 93%;
-  padding: 0;
+  padding: 12px 0;
   margin: 0 auto;
   margin-top: 24px;
   height: min-content;

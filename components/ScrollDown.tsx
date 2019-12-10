@@ -12,5 +12,5 @@ export default function ScrollDown() {
       <div className="scroll--down__box" />
       <span>SCROLL DOWN</span>
     </div>
-  );
+  )
 }
