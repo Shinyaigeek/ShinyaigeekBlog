@@ -11,6 +11,8 @@ import { Result, Button, Pagination, BackTop } from "antd";
 import ItemList from "../components/ItemList";
 import Welcome from "../components/Welcome";
 
+import "../style/home.scss"
+
 interface Props {
   headers: header[];
   totalItem: number;
@@ -45,7 +47,7 @@ const Index: NextPage<Props> = props => {
         <link rel="icon" href="/static/icon.png" />
       </Head>
       <Welcome />
-      <div id="home--items">
+      <div className="home--items">
         {props.headers.length !== 0 &&
           props.headers.map((header, index) => {
             return <ItemList {...header} key={`itemlist__${index}`} />;
