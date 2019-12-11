@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { NextPage } from "next";
-
+import dynamic from "next/dynamic"
 import "../style/home.scss";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -10,6 +10,9 @@ import { Result, Button, Pagination, BackTop } from "antd";
 
 import ItemList from "../components/ItemList";
 import Welcome from "../components/Welcome";
+
+const Items = dynamic(() => import("../components/Items"))
+
 
 import "../style/home.scss";
 
@@ -29,41 +32,7 @@ const Index: NextPage<Props> = props => {
     scrollTo(0, 0);
   }
 
-  useEffect(() => {
-    console.log(8)
-    window.addEventListener("load", function() {
-      console.log(8)
-      const lazyImages:HTMLImageElement[] = [].slice.call(document.querySelectorAll("img.lazy"));
-
-      if ("IntersectionObserver" in window) {
-        let lazyImageObserver = new IntersectionObserver(function(
-          entries,
-          observer
-        ) {
-          entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-              // @ts-ignore
-              let lazyImage = entry.target;
-              // @ts-ignore
-              lazyImage.src = lazyImage.dataset.src;
-              // @ts-ignore
-              lazyImage.srcset = lazyImage.dataset.srcset;
-              lazyImage.classList.remove("lazy");
-              lazyImageObserver.unobserve(lazyImage);
-            }
-          });
-        });
-
-        lazyImages.forEach(function(lazyImage) {
-          console.log(lazyImage)
-          lazyImageObserver.observe(lazyImage);
-        });
-      } else {
-        // Possibly fall back to a more compatible method here
-      }
-    });
-  },[]);
-
+  console.log(props)
   return (
     <div>
       <Head>
@@ -83,24 +52,7 @@ const Index: NextPage<Props> = props => {
         <link rel="icon" href="/static/icon.png" />
       </Head>
       <Welcome />
-      <div className="home--items">
-        {props.headers.length !== 0 &&
-          props.headers.map((header, index) => {
-            return <ItemList {...header} key={`itemlist__${index}`} />;
-          })}
-        {props.headers.length === 0 && (
-          <Result
-            status="404"
-            title="404"
-            subTitle="Sorry, the page you visited does not exist."
-            extra={
-              <Link href="/">
-                <Button type="primary">Back Home</Button>
-              </Link>
-            }
-          />
-        )}
-      </div>
+      <Items {...props}/>
       <div
         style={{
           width: "200px",
