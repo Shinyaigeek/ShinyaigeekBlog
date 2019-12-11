@@ -1,5 +1,6 @@
 import React from "react";
 import { NextPage } from "next";
+import dynamic from "next/dynamic";
 
 import "../style/home.scss";
 import { useRouter } from "next/router";
@@ -8,10 +9,15 @@ import { header } from "./post/[item]";
 import Head from "next/head";
 import { Result, Button, Pagination, BackTop } from "antd";
 
-import ItemList from "../components/ItemList";
+// import ItemList from "../components/ItemList";
 import Welcome from "../components/Welcome";
 
-import "../style/home.scss"
+const ItemList = dynamic(() => import("../components/ItemList"), {
+  loading: () => <SkeletonItemCard />
+});
+
+import "../style/home.scss";
+import SkeletonItemCard from "../components/SkeletonItemCard";
 
 interface Props {
   headers: header[];
