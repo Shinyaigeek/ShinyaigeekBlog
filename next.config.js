@@ -1,5 +1,6 @@
 const withSass = require("@zeit/next-sass");
 const Mode = require('frontmatter-markdown-loader/mode')
+const FontminPlugin = require('fontmin-webpack')
 
 const nextConfig = {
   compress:true,
@@ -18,6 +19,12 @@ const nextConfig = {
         mode: [Mode.BODY]
       }
     })
+
+    config.plugins.push(
+      new FontminPlugin({
+        autodetect: true,
+      })
+    )
 
     return config;
   }
