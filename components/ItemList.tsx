@@ -16,13 +16,26 @@ export default function Item(props: header) {
         className="item--card"
         bordered={true}
         hoverable={true}
-        cover={<img src="/static/icon_blur.png" data-src="/static/icon_blur.png" data-srcset={props.img} className="item--card__img lazy" alt="card--icon"/>}
+        cover={
+          <img
+            src="/static/icon_blur.png"
+            data-src="/static/icon_blur.png"
+            data-srcset={props.img}
+            className="item--card__img lazy"
+            alt="card--icon"
+          />
+        }
         style={{
           width: 300,
           margin: "24px auto"
         }}
       >
-        <Meta title={props.name} description={props.description} />
+        <Meta
+          title={props.name}
+          description={
+            <div className="item--card__description">{props.description}</div>
+          }
+        />
         <DecorationTag tags={props.tag} />
       </Card>
     </Link>
