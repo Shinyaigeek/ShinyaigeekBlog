@@ -9,6 +9,7 @@ const PripacyPolicy: NextPage<WithRouterProps> = () => {
       <Head>
         <title>しにゃいの学習帳</title>
         <meta name="description" content="webが大好きな大学生のブログ" />
+        <meta http-equiv="content-language" content="ja" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="author" content="しにゃい" />
         <meta property="og:url" content="https://www.shinyaigeek.com" />

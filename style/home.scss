@@ -34,4 +34,8 @@
   &__img{
     filter:var(--image-gray);
   }
+
+  &__description{
+    color:var(--theme-color);
+  }
 }

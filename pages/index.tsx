@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { NextPage } from "next";
-import dynamic from "next/dynamic"
+import dynamic from "next/dynamic";
 import "../style/home.scss";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -11,8 +11,7 @@ import { Result, Button, Pagination, BackTop } from "antd";
 import ItemList from "../components/ItemList";
 import Welcome from "../components/Welcome";
 
-const Items = dynamic(() => import("../components/Items"))
-
+const Items = dynamic(() => import("../components/Items"));
 
 import "../style/home.scss";
 
@@ -32,12 +31,13 @@ const Index: NextPage<Props> = props => {
     scrollTo(0, 0);
   }
 
-  console.log(props)
+  console.log(props);
   return (
     <div>
       <Head>
         <title>しにゃいの学習帳</title>
         <meta name="description" content="webが大好きな大学生のブログ" />
+        <meta http-equiv="content-language" content="ja" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="author" content="しにゃい" />
         <meta property="og:url" content="https://www.shinyaigeek.com" />
@@ -52,7 +52,7 @@ const Index: NextPage<Props> = props => {
         <link rel="icon" href="/static/icon.png" />
       </Head>
       <Welcome />
-      <Items {...props}/>
+      <Items {...props} />
       <div
         style={{
           width: "200px",
@@ -61,7 +61,6 @@ const Index: NextPage<Props> = props => {
         }}
       >
         <Pagination
-          simple
           defaultCurrent={page}
           total={props.totalItem}
           onChange={page => pageChange(page)}
@@ -77,15 +76,20 @@ Index.getInitialProps = async req => {
   const tag = req.query.tag as string;
   const itemNum = require.context("../items", true, /\.md$/).keys().length;
   let totalNum = 0;
+  let canPushNum = 0;
   const itemInfos: header[] = [];
-  for (let i = itemNum - (page - 1) * 10; i > 0; i--) {
+  for (let i = itemNum; i > 0; i--) {
     const header = await import("../items/" + i + ".md").then(item => {
       return item.attributes as header;
     });
     if (!tag || header.tag.includes(tag)) {
-      if (itemInfos.length <= 9) {
+      if (
+        itemInfos.length <= 9 &&
+        (page - 1) * 10 <= canPushNum && canPushNum < page * 10
+      ) {
         itemInfos.push(header);
       }
+      canPushNum += 1;
       totalNum += 1;
     }
   }
