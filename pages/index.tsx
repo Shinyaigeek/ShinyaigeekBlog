@@ -35,6 +35,7 @@ const Index: NextPage<Props> = props => {
   console.log(props)
   return (
     <div>
+      <html lang="ja" />
       <Head>
         <title>しにゃいの学習帳</title>
         <meta name="description" content="webが大好きな大学生のブログ" />
