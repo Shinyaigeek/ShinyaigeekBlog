@@ -34,6 +34,7 @@ const Item: NextPage<Props & PageInfo, PageInfo> = props => {
       <Head>
         <title>しにゃいの学習帳｜{props.header.name}</title>
         <meta name="description" content={props.header.description} />
+        <meta http-equiv="content-language" content="ja" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="author" content="しにゃい" />
         <meta property="og:url" content="https://www.shinyaigeek.com" />

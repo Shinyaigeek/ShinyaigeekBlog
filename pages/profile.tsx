@@ -20,6 +20,7 @@ const Profile: NextPage<Props> = (props:Props) => {
           name="description"
           content="しにゃいのブログ。主に技術のことについて語ります。Node.jsが好き"
         />
+        <meta http-equiv="content-language" content="ja" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="author" content="しにゃい" />
         <meta property="og:url" content="https://www.shinyaigeek.com" />
