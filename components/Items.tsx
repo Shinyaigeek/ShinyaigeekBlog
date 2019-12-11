@@ -69,7 +69,7 @@ export default function Items(props: Props) {
   }, props.headers);
 
   return (
-    <div className="home--items">
+    <div className="home--items" id="home--items">
       {props.headers.length !== 0 &&
         props.headers.map((header, index) => {
           return <ItemList {...header} key={`itemlist__${index}`} />;

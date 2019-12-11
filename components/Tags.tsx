@@ -16,42 +16,42 @@ const tags = [
   {
     tagName: "競プロ",
     tagNameEn: "Code",
-    tagColor: "#028090"
+    tagColor: "orange"
   },
   {
     tagName: "Python",
     tagNameEn: "Python",
-    tagColor: "#00BFB2"
+    tagColor: "blue"
   },
   {
     tagName: "プログラミング",
     tagNameEn: "Programing",
-    tagColor: "#F0F3BD"
+    tagColor: "cyan"
   },
   {
     tagName: "C/C++",
     tagNameEn: "C/C++",
-    tagColor: "#C64191"
+    tagColor: "green"
   },
   {
     tagName: "JavaScript",
     tagNameEn: "JavaScript",
-    tagColor: "#F05D5E"
+    tagColor: "volcano"
   },
   {
     tagName: "ブログ",
     tagNameEn: "Blog",
-    tagColor: "#ECE2D0"
+    tagColor: "magenta"
   },
   {
     tagName: "ポエム",
     tagNameEn: "Poem",
-    tagColor: "#80FFE8"
+    tagColor: "lime"
   },
   {
     tagName: "React",
     tagNameEn: "React",
-    tagColor: "#97D2FB"
+    tagColor: "geekblue"
   }
 ];
 
