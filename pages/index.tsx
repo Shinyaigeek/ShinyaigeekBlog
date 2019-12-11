@@ -23,7 +23,7 @@ interface Props {
 
 const Index: NextPage<Props> = props => {
   const router = useRouter();
-  const page = ((router.query.page as any) as number) || 1;
+  const page = Number(((router.query.page as any) as number) || 1);
   function pageChange(page: number) {
     let params = "/?page=" + page;
     router.query.tag && (params += "&tag=" + router.query.tag);

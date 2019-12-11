@@ -13,9 +13,11 @@ interface Props {
 export default function Items(props: Props) {
   useEffect(() => {
     window.addEventListener("load", function() {
+      console.log("loaded");
       const lazyImages: HTMLImageElement[] = [].slice.call(
         document.querySelectorAll("img.lazy")
       );
+      console.log(lazyImages);
 
       if ("IntersectionObserver" in window) {
         let lazyImageObserver = new IntersectionObserver(function(
@@ -24,13 +26,9 @@ export default function Items(props: Props) {
         ) {
           entries.forEach(function(entry) {
             if (entry.isIntersecting) {
-              // @ts-ignore
-              let lazyImage = entry.target;
-              // @ts-ignore
-              lazyImage.src = lazyImage.dataset.src;
-              // @ts-ignore
-              lazyImage.srcset = lazyImage.dataset.srcset;
-              lazyImage.classList.remove("lazy");
+              let lazyImage = entry.target as HTMLImageElement;
+              lazyImage.src = lazyImage.dataset.src as string;
+              lazyImage.srcset = lazyImage.dataset.srcset as string;
               lazyImageObserver.unobserve(lazyImage);
             }
           });
@@ -43,7 +41,7 @@ export default function Items(props: Props) {
         // Possibly fall back to a more compatible method here
       }
     });
-  }, []);
+  },props.headers);
 
   return (
     <div className="home--items">

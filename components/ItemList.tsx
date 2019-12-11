@@ -16,7 +16,7 @@ export default function Item(props: header) {
         className="item--card"
         bordered={true}
         hoverable={true}
-        cover={<img src="/static/24-1.png" data-src="/static/24-1.png" data-srcset={props.img} className="item--card__img lazy" alt="card--icon"/>}
+        cover={<img src="/static/icon_blur.png" data-src="/static/icon_blur.png" data-srcset={props.img} className="item--card__img lazy" alt="card--icon"/>}
         style={{
           width: 300,
           margin: "24px auto"
