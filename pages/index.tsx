@@ -34,7 +34,6 @@ const Index: NextPage<Props> = props => {
   console.log(props);
   return (
     <div>
-      <html lang="ja" />
       <Head>
         <title>しにゃいの学習帳</title>
         <meta name="description" content="webが大好きな大学生のブログ" />
@@ -61,7 +60,6 @@ const Index: NextPage<Props> = props => {
         }}
       >
         <Pagination
-          simple
           defaultCurrent={page}
           total={props.totalItem}
           onChange={page => pageChange(page)}
@@ -84,7 +82,10 @@ Index.getInitialProps = async req => {
       return item.attributes as header;
     });
     if (!tag || header.tag.includes(tag)) {
-      if (itemInfos.length <= 9 && (((page - 1) * 10) <= canPushNum && canPushNum < page * 10)) {
+      if (
+        itemInfos.length <= 9 &&
+        (page - 1) * 10 <= canPushNum && canPushNum < page * 10
+      ) {
         itemInfos.push(header);
       }
       canPushNum += 1;

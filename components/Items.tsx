@@ -12,6 +12,7 @@ interface Props {
 
 export default function Items(props: Props) {
   useEffect(() => {
+      console.log("hookes")
     window.addEventListener("load", function() {
       console.log("loaded");
       const lazyImages: HTMLImageElement[] = [].slice.call(
