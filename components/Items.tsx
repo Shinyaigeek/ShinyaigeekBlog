@@ -12,16 +12,13 @@ interface Props {
 
 export default function Items(props: Props) {
   useEffect(() => {
-      console.log("hookes")
     window.addEventListener("load", function() {
-      console.log("loaded");
       const lazyImages: HTMLImageElement[] = [].slice.call(
         document.querySelectorAll("img.lazy")
       );
-      console.log(lazyImages);
 
       if ("IntersectionObserver" in window) {
-        let lazyImageObserver = new IntersectionObserver(function(
+        const lazyImageObserver = new IntersectionObserver(function(
           entries,
           observer
         ) {
@@ -42,7 +39,34 @@ export default function Items(props: Props) {
         // Possibly fall back to a more compatible method here
       }
     });
-  },props.headers);
+    if (document.readyState === "complete") {
+      const lazyImages: HTMLImageElement[] = [].slice.call(
+        document.querySelectorAll("img.lazy")
+      );
+
+      if ("IntersectionObserver" in window) {
+        const lazyImageObserver = new IntersectionObserver(function(
+          entries,
+          observer
+        ) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              let lazyImage = entry.target as HTMLImageElement;
+              lazyImage.src = lazyImage.dataset.src as string;
+              lazyImage.srcset = lazyImage.dataset.srcset as string;
+              lazyImageObserver.unobserve(lazyImage);
+            }
+          });
+        });
+
+        lazyImages.forEach(function(lazyImage) {
+          lazyImageObserver.observe(lazyImage);
+        });
+      } else {
+        // Possibly fall back to a more compatible method here
+      }
+    }
+  }, props.headers);
 
   return (
     <div className="home--items">
