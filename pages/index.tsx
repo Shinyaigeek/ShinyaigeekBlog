@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NextPage } from "next";
-
+import dynamic from "next/dynamic"
 import "../style/home.scss";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -11,7 +11,10 @@ import { Result, Button, Pagination, BackTop } from "antd";
 import ItemList from "../components/ItemList";
 import Welcome from "../components/Welcome";
 
-import "../style/home.scss"
+const Items = dynamic(() => import("../components/Items"))
+
+
+import "../style/home.scss";
 
 interface Props {
   headers: header[];
@@ -20,7 +23,7 @@ interface Props {
 
 const Index: NextPage<Props> = props => {
   const router = useRouter();
-  const page = ((router.query.page as any) as number) || 1;
+  const page = Number(((router.query.page as any) as number) || 1);
   function pageChange(page: number) {
     let params = "/?page=" + page;
     router.query.tag && (params += "&tag=" + router.query.tag);
@@ -28,6 +31,8 @@ const Index: NextPage<Props> = props => {
     router.push(params);
     scrollTo(0, 0);
   }
+
+  console.log(props)
   return (
     <div>
       <Head>
@@ -47,24 +52,7 @@ const Index: NextPage<Props> = props => {
         <link rel="icon" href="/static/icon.png" />
       </Head>
       <Welcome />
-      <div className="home--items">
-        {props.headers.length !== 0 &&
-          props.headers.map((header, index) => {
-            return <ItemList {...header} key={`itemlist__${index}`} />;
-          })}
-        {props.headers.length === 0 && (
-          <Result
-            status="404"
-            title="404"
-            subTitle="Sorry, the page you visited does not exist."
-            extra={
-              <Link href="/">
-                <Button type="primary">Back Home</Button>
-              </Link>
-            }
-          />
-        )}
-      </div>
+      <Items {...props}/>
       <div
         style={{
           width: "200px",
