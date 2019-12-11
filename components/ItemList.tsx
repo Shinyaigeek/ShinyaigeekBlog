@@ -16,7 +16,7 @@ export default function Item(props: header) {
         className="item--card"
         bordered={true}
         hoverable={true}
-        // cover={<img src={props.img} className="item--card__img" alt="card--icon"/>}
+        cover={<img src={props.img} className="item--card__img" alt="card--icon"/>}
         style={{
           width: 300,
           margin: "24px auto"
