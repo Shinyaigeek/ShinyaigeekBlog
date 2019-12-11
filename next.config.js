@@ -16,9 +16,6 @@ const returnPosts = function(itemN) {
     let path = "/post/" + i;
     posts[path] = {
       page: "/post/[item]",
-      query: {
-        item: i
-      }
     };
   }
   return posts;
