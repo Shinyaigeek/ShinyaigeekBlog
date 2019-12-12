@@ -32,17 +32,7 @@ body {
   color: var(--theme-color) !important;
 }
 
-@font-face {
-  font-family: "Crayon";
-  src: url("/static/font/crayon_1-1.ttf");
-  unicode-range: U+3057, U+306B, U+3083, U+3044, U+306E, U+5B66, U+7FD2, U+5E33,
-    U+30DD, U+30FC, U+30C8, U+30D5, U+30A3, U+30A9, U+30EA, U+30AA, U+30D7,
-    U+30ED, U+30EB, U+4F5C, U+54C1, U+96C6, U+30D6, U+30B0, U+30B3, U+30F3,
-    U+30BF, U+30AF;
-}
-
 .header {
-  font-family: Crayon;
   height: 72px;
   width: 100vw;
   font-size: 30px;
@@ -194,7 +184,6 @@ body {
 }
 
 .hamburgerMenu--content {
-  font-family: Crayon;
   position: absolute;
   top: 72px;
   left: 0;

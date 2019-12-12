@@ -1,4 +1,5 @@
 const withSass = require("@zeit/next-sass");
+const withCss = require("@zeit/next-css")
 const Mode = require('frontmatter-markdown-loader/mode')
 const FontminPlugin = require('fontmin-webpack')
 
@@ -8,7 +9,7 @@ const nextConfig = {
     config.module.rules.push({
       test: /\.(eot|woff|woff2|ttf|svg|png|jp g|gif|webp)$/,
       use: {
-        loader: "url-loader"
+        loader: "url-loader",
       }
     });
 
@@ -30,4 +31,4 @@ const nextConfig = {
   }
 };
 
-module.exports = withSass(nextConfig);
+module.exports = withCss(withSass(nextConfig));
