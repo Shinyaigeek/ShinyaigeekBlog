@@ -8,7 +8,11 @@ const nextConfig = {
     config.module.rules.push({
       test: /\.(eot|woff|woff2|ttf|svg|png|jp g|gif|webp)$/,
       use: {
-        loader: "url-loader"
+        loader: "url-loader",
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'font/'
+        }
       }
     });
 
