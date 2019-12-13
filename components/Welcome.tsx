@@ -2,7 +2,7 @@ import React from "react";
 
 import Animation from "./Animation";
 import ScrollDown from "./ScrollDown";
-import StarStream from "./StarStream"
+import StarStream from "./StarStream";
 
 import "../style/welcome.scss";
 

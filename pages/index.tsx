@@ -85,7 +85,8 @@ Index.getInitialProps = async req => {
     if (!tag || header.tag.includes(tag)) {
       if (
         itemInfos.length <= 9 &&
-        (page - 1) * 10 <= canPushNum && canPushNum < page * 10
+        (page - 1) * 10 <= canPushNum &&
+        canPushNum < page * 10
       ) {
         itemInfos.push(header);
       }

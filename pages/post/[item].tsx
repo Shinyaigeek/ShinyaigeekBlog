@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NextPage, NextPageContext } from "next";
 import Head from "next/head";
 import PostContent from "../../views/Post";
@@ -50,6 +50,16 @@ const Item: NextPage<Props & PageInfo, PageInfo> = props => {
         <meta name="twitter:site" content="@Shinyaigeek" />
         <meta name="twitter:card" content="summary" />
         <link rel="icon" href="/static/icon.png" />
+        <script
+          type="text/javascript"
+          id="MathJax-script"
+          async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+        />
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"
+          async
+        ></script>
       </Head>
       {props.body ? (
         <PostContent
@@ -76,7 +86,9 @@ Item.getInitialProps = async (req: NextPageContext) => {
   try {
     const item = await import("../../items/" + req.query.item + ".md");
     const header = item.attributes as header;
-    const content = marked(item.body, {
+    const content = marked(item.body.replace(/\?\?.+\?\?/g,(target:string) => {
+      return target.replace("??","<span class='text__red'>").replace("??","</span>")
+    }), {
       highlight: function(code) {
         return require("highlight.js").highlightAuto(code).value;
       }
