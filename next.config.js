@@ -2,6 +2,7 @@ const withSass = require("@zeit/next-sass");
 const withCss = require("@zeit/next-css")
 const Mode = require('frontmatter-markdown-loader/mode')
 const FontminPlugin = require('fontmin-webpack')
+const optimizedImages = require('next-optimized-images');
 
 const nextConfig = {
   compress:true,
@@ -31,4 +32,4 @@ const nextConfig = {
   }
 };
 
-module.exports = withCss(withSass(nextConfig));
+module.exports = optimizedImages(withCss(withSass(nextConfig)));
