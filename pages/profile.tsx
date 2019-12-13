@@ -31,7 +31,7 @@ const Profile: NextPage<Props> = (props:Props) => {
         />
         <meta
           property="og:image"
-          content="https://www.shinyaigeek.com/icon.png"
+          content="/static/icon.png"
         />
         <meta property="og:image:width" content="600" />
         <meta property="og:image:height" content="600" />

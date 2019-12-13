@@ -45,7 +45,7 @@ const Item: NextPage<Props & PageInfo, PageInfo> = props => {
         <meta property="og:description" content={props.header.description} />
         <meta
           property="og:image"
-          content="https://wwwc.shinyaigeek.com/icon.png"
+          content={props.header.img}
         />
         <meta name="twitter:site" content="@Shinyaigeek" />
         <meta name="twitter:card" content="summary" />

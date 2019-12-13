@@ -45,7 +45,7 @@ const Index: NextPage<Props> = props => {
         <meta property="og:description" content="webが大好きな大学生のブログ" />
         <meta
           property="og:image"
-          content="https://wwwc.shinyaigeek.com/icon.png"
+          content="/static/icon.png"
         />
         <meta name="twitter:site" content="@Shinyaigeek" />
         <meta name="twitter:card" content="summary" />
