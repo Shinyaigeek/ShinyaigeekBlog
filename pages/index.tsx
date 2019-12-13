@@ -79,13 +79,15 @@ Index.getInitialProps = async req => {
   let canPushNum = 0;
   const itemInfos: header[] = [];
   for (let i = itemNum; i > 0; i--) {
+    console.log(i)
     const header = await import("../items/" + i + ".md").then(item => {
       return item.attributes as header;
     });
     if (!tag || header.tag.includes(tag)) {
       if (
         itemInfos.length <= 9 &&
-        (page - 1) * 10 <= canPushNum && canPushNum < page * 10
+        (page - 1) * 10 <= canPushNum &&
+        canPushNum < page * 10
       ) {
         itemInfos.push(header);
       }
