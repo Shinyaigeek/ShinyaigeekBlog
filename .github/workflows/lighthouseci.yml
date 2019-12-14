@@ -1,4 +1,4 @@
-name: Node CI
+name: LightHouse CI
 
 on: [push]
 
@@ -19,9 +19,9 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: npm install, build, and test
       run: |
-        - npm ci
-        - npm install -g @lhci/cli@0.3.x
-        - npm run build
-        - lhci autorun
+        npm ci
+        npm install -g @lhci/cli@0.3.x
+        npm run build
+        lhci autorun
       env:
         CI: true
