@@ -20,6 +20,8 @@ interface Props {
   totalItem: number;
 }
 
+export const config = { amp: true };
+
 const Index: NextPage<Props> = props => {
   const router = useRouter();
   const page = Number(((router.query.page as any) as number) || 1);
@@ -31,7 +33,6 @@ const Index: NextPage<Props> = props => {
     scrollTo(0, 0);
   }
 
-  console.log(props);
   return (
     <div>
       <Head>

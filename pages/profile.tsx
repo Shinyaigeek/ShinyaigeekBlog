@@ -11,6 +11,8 @@ interface Props {
   setShowContactModal:Function
 }
 
+export const config = { amp: true };
+
 const Profile: NextPage<Props> = (props:Props) => {
   return (
     <div className="profile">
