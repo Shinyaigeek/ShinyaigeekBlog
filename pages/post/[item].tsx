@@ -28,6 +28,8 @@ type Props = {
   setShowContactModal: Function;
 };
 
+export const config = { amp: true };
+
 const Item: NextPage<Props & PageInfo, PageInfo> = props => {
   return (
     <div>
@@ -43,10 +45,7 @@ const Item: NextPage<Props & PageInfo, PageInfo> = props => {
           content={"しにゃいの学習帳｜" + props.header.name}
         />
         <meta property="og:description" content={props.header.description} />
-        <meta
-          property="og:image"
-          content={props.header.img}
-        />
+        <meta property="og:image" content={props.header.img} />
         <meta name="twitter:site" content="@Shinyaigeek" />
         <meta name="twitter:card" content="summary" />
         <link rel="icon" href="/static/icon.png" />
@@ -86,13 +85,18 @@ Item.getInitialProps = async (req: NextPageContext) => {
   try {
     const item = await import("../../items/" + req.query.item + ".md");
     const header = item.attributes as header;
-    const content = marked(item.body.replace(/\?\?.+\?\?/g,(target:string) => {
-      return target.replace("??","<span class='text__red'>").replace("??","</span>")
-    }), {
-      highlight: function(code) {
-        return require("highlight.js").highlightAuto(code).value;
+    const content = marked(
+      item.body.replace(/\?\?.+\?\?/g, (target: string) => {
+        return target
+          .replace("??", "<span class='text__red'>")
+          .replace("??", "</span>");
+      }),
+      {
+        highlight: function(code) {
+          return require("highlight.js").highlightAuto(code).value;
+        }
       }
-    }).replace(/\n/g, "<br>");
+    ).replace(/\n/g, "<br>");
     const headings: string[] | null = content.match(/<h2 id=".+?">.+?<\/h2>/g);
     const body = content.replace(/<h2 id=".+?">/g, (target: string) => {
       const id = target.replace('<h2 id="', "").replace('">', "");

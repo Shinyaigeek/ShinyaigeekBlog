@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "API_ENV=local next",
-    "build": "NODE_ENV=production && next build",
+    "build":"NODE_ENV=production && next build && next export -o dist",
+    "server-build": "NODE_ENV=production && next build",
     "export": "next build && next export -o dist"
   },
   "repository": {

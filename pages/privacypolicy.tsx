@@ -3,6 +3,8 @@ import { NextPage } from "next";
 import withRouter, { WithRouterProps } from "next/dist/client/with-router";
 import Head from "next/head";
 
+export const config = { amp: true };
+
 const PripacyPolicy: NextPage<WithRouterProps> = () => {
   return (
     <div>
