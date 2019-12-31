@@ -14,7 +14,6 @@ export type header = {
   path: string;
   tag: string[];
   description: string;
-  img: string;
   date: string;
 };
 
