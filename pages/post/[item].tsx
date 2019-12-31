@@ -44,7 +44,7 @@ const Item: NextPage<Props & PageInfo, PageInfo> = props => {
         <meta property="og:description" content={props.header.description} />
         <meta
           property="og:image"
-          content={props.header.img}
+          content="/static/icon.png"
         />
         <meta name="twitter:site" content="@Shinyaigeek" />
         <meta name="twitter:card" content="summary" />
@@ -109,7 +109,6 @@ Item.getInitialProps = async (req: NextPageContext) => {
       path: "not found",
       tag: [],
       description: "not found",
-      img: "not found",
       date: "not found"
     };
     return {
