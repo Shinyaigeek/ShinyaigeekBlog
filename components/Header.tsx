@@ -75,8 +75,7 @@ export default function Header(props: Props) {
           onClose={() => props.setShowHamburgerMenu()}
           width="100%"
           zIndex={2000}
-          closable={false}
-          className="hamburgerMenu--content"
+          closable={true}
         >
           <div className="hamburgerMenu--content">
             <div
