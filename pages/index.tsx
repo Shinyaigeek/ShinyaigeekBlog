@@ -30,8 +30,6 @@ const Index: NextPage<Props> = props => {
     router.push(params);
     scrollTo(0, 0);
   }
-
-  console.log(props);
   return (
     <div>
       <Head>
