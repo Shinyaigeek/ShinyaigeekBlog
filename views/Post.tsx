@@ -11,7 +11,9 @@ import dynamic from "next/dynamic";
 const ShareModal = dynamic(() => import("../components/ShareModal"));
 const ThatsMe = dynamic(() => import("../components/ThatsMe"));
 
-import { Divider, Button, Icon } from "antd";
+import { Button, Icon } from "antd";
+
+import Divider from "../components/Divider"
 
 interface Props {
   pageInfo: PageInfo;

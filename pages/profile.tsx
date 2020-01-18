@@ -3,7 +3,9 @@ import React from "react";
 import Head from "next/head";
 import { NextPage } from "next";
 
-import { Icon, Button, Divider, } from "antd";
+import { Icon, Button } from "antd";
+
+import Divider from "../components/divider"
 
 import "../style/profile.scss"
 

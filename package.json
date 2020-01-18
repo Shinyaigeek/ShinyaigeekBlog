@@ -27,7 +27,7 @@
     "@types/webpack-env": "^1.14.1",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
-    "antd": "^3.25.3",
+    "antd": "^3.26.7",
     "emailjs-com": "^2.4.1",
     "file-loader": "^5.0.2",
     "fontmin-webpack": "^2.0.5",
