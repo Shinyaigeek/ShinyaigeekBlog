@@ -18,7 +18,9 @@ export default async (req: any, res: any) => {
     const file = await fs.promises.readFile(`./items/${tar}.md`, {
       encoding: "utf8"
     });
+    console.log(1)
     const mattered = fm<header>(file);
+    console.log(1)
     const header = mattered.attributes;
     if (!tag || header.tag.includes(tag)) {
       if (
@@ -40,6 +42,7 @@ export default async (req: any, res: any) => {
   //   console.log(json)
   //   res.set
   //   res.end(json);
+  console.log(itemInfos)
   res.status(500).json({
     headers: itemInfos,
     totalItem: totalNum

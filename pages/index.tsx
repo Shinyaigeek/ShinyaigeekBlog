@@ -71,32 +71,23 @@ const Index: NextPage<Props> = props => {
 Index.getInitialProps = async req => {
   const page = Number(req.query.page) || 1;
   const tag = req.query.tag as string;
-  const itemNum = require.context("../items", true, /\.md$/).keys().length;
-  let totalNum = 0;
-  let canPushNum = 0;
-  const itemInfos: header[] = [];
-  for (let i = itemNum; i > 0; i--) {
-    console.log(i);
-    const header = await import("../items/" + i + ".md").then(item => {
-      return item.attributes as header;
-    });
-    if (!tag || header.tag.includes(tag)) {
-      if (
-        itemInfos.length <= 9 &&
-        (page - 1) * 10 <= canPushNum &&
-        canPushNum < page * 10
-      ) {
-        itemInfos.push(header);
-      }
-      canPushNum += 1;
-      totalNum += 1;
-    }
+  let url = `http://localhost:3000/api/getBlogPosts?page=${page}`;
+  if (tag) {
+    url += `&tag=${tag}`;
   }
-
-  return {
-    headers: itemInfos,
-    totalItem: totalNum
-  };
+  return fetch(url, {
+    method: "get"
+  }).then(res => {
+    return res
+      .json()
+      .then(json => {
+        console.log(json);
+        return json;
+      })
+      .catch(e => {
+        throw new Error(e);
+      });
+  });
 };
 
 export default Index;
