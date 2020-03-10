@@ -83,7 +83,7 @@ const Item: NextPage<Props & PageInfo, PageInfo> = props => {
 Item.getInitialProps = async (req: NextPageContext) => {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/getBlogPost?target=${req.query.item}`,
+      `https://www.shinyaigeek.com/api/getBlogPost?target=${req.query.item}`,
       {
         method: "get"
       }

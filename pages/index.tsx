@@ -71,7 +71,7 @@ const Index: NextPage<Props> = props => {
 Index.getInitialProps = async req => {
   const page = Number(req.query.page) || 1;
   const tag = req.query.tag as string;
-  let url = `http://localhost:3000/api/getBlogPosts?page=${page}`;
+  let url = `https://www.shinyaigeek.com/api/getBlogPosts?page=${page}`;
   if (tag) {
     url += `&tag=${tag}`;
   }
