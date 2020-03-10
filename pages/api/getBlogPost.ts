@@ -5,6 +5,10 @@ import marked from "marked";
 
 export default async (req: any, res: any) => {
   const target = Number(req.query.target) || 1;
+  const ls = await fs.promises.readdir(".")
+  for (let i of ls){
+    console.log(i)
+  }
   const item = await fs.promises.readFile(`./items/${target}.md`, {
     encoding: "utf8"
   });
