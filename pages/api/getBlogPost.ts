@@ -26,7 +26,7 @@ export default async (req: any, res: any) => {
     const id = target.replace('<h2 id="', "").replace('">', "");
     return `<h2 id="${encodeURI(id)}">`;
   });
-  res.status(500).json({
+  res.status(200).json({
     header: mattered.attributes,
     body: body,
     headings: headings

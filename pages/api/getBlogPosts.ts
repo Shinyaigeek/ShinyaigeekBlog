@@ -43,7 +43,7 @@ export default async (req: any, res: any) => {
   //   res.set
   //   res.end(json);
   console.log(itemInfos)
-  res.status(500).json({
+  res.status(200).json({
     headers: itemInfos,
     totalItem: totalNum
   });
