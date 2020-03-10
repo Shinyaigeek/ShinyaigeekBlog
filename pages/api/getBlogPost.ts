@@ -9,7 +9,7 @@ export default async (req: any, res: any) => {
   for (let i of ls){
     console.log(i)
   }
-  const item = await fs.promises.readFile(`./items/${target}.md`, {
+  const item = await fs.promises.readFile(`/static/items/${target}.md`, {
     encoding: "utf8"
   });
   const mattered = fm<header>(item);

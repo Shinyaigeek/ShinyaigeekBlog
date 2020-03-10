@@ -9,13 +9,13 @@ export default async (req: any, res: any) => {
   let totalNum = 0;
   let canPushNum = 0;
   const itemInfos: header[] = [];
-  const files = await fs.promises.readdir("./items", {
+  const files = await fs.promises.readdir("/static/items", {
     encoding: "utf8"
   });
   const filesLen = files.length;
   for (let i in files) {
     const tar = filesLen - Number(i);
-    const file = await fs.promises.readFile(`./items/${tar}.md`, {
+    const file = await fs.promises.readFile(`/static/items/${tar}.md`, {
       encoding: "utf8"
     });
     console.log(1)
