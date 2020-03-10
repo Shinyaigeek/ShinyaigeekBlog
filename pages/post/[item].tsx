@@ -6,6 +6,8 @@ import { Anchor, Result, Button } from "antd";
 import marked from "marked";
 // import highlight from "highlight.js"
 
+import fetch from "isomorphic-fetch";
+
 const { Link } = Anchor;
 import "../../style/post.scss";
 
@@ -42,10 +44,7 @@ const Item: NextPage<Props & PageInfo, PageInfo> = props => {
           content={"しにゃいの学習帳｜" + props.header.name}
         />
         <meta property="og:description" content={props.header.description} />
-        <meta
-          property="og:image"
-          content="/static/icon.png"
-        />
+        <meta property="og:image" content="/static/icon.png" />
         <meta name="twitter:site" content="@Shinyaigeek" />
         <meta name="twitter:card" content="summary" />
         <link rel="icon" href="/static/icon.png" />
@@ -83,25 +82,15 @@ const Item: NextPage<Props & PageInfo, PageInfo> = props => {
 
 Item.getInitialProps = async (req: NextPageContext) => {
   try {
-    const item = await import("../../items/" + req.query.item + ".md");
-    const header = item.attributes as header;
-    const content = marked(item.body.replace(/\?\?.+\?\?/g,(target:string) => {
-      return target.replace("??","<span class='text__red'>").replace("??","</span>")
-    }), {
-      highlight: function(code) {
-        return require("highlight.js").highlightAuto(code).value;
+    const res = await fetch(
+      `http://localhost:3000/api/getBlogPost?target=${req.query.item}`,
+      {
+        method: "get"
       }
-    }).replace(/\n/g, "<br>");
-    const headings: string[] | null = content.match(/<h2 id=".+?">.+?<\/h2>/g);
-    const body = content.replace(/<h2 id=".+?">/g, (target: string) => {
-      const id = target.replace('<h2 id="', "").replace('">', "");
-      return `<h2 id="${encodeURI(id)}">`;
+    );
+    return res.json().then(json => {
+      return json
     });
-    return {
-      header: header,
-      body: body,
-      headings: headings
-    };
   } catch (e) {
     console.log(e);
     const header: header = {
